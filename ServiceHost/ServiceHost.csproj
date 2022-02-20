@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AdminTheme\assets\fonts\fontawesome-webfont3e6e.svg" />
+    <None Include="wwwroot\AdminTheme\assets\fonts\fontawesome-webfont3e6e.woff2" />
+    <None Include="wwwroot\AdminTheme\assets\fonts\ionicons28b5.svg" />
+    <None Include="wwwroot\AdminTheme\assets\js\active.js" />
+    <None Include="wwwroot\AdminTheme\assets\js\ajax-mail.js" />
+    <None Include="wwwroot\AdminTheme\assets\js\vendors.js" />
+    <None Include="wwwroot\AdminTheme\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\AdminTheme\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\AdminTheme\fonts\IranianSans.svg" />
+    <None Include="wwwroot\AdminTheme\fonts\IranianSans.woff2" />
+    <None Include="wwwroot\AdminTheme\fonts\Material-Design-Iconic-Font.svg" />
+    <None Include="wwwroot\AdminTheme\images\big\Thumbs.db" />
+    <None Include="wwwroot\AdminTheme\images\small\Thumbs.db" />
+    <None Include="wwwroot\AdminTheme\images\users\Thumbs.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopManegment.Configuration\ShopManegment.Configuration.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>
