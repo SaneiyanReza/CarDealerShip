@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManegement.App.VehicleCategories;
 using System.Collections.Generic;
-using _0_Framework.Infrastucture;
-using ShopManegment.Configuration;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.VehicleCategories
 {

@@ -14,6 +14,7 @@ namespace ShopManegement.App.VehicleCategories
         OperationResult Edit(EditVehicleCategory editVehicleCategory);
 
         EditVehicleCategory GetDetail(int id);
+        List<VehicleCategoryViewModel> GetVehicleCategories();
 
         List<VehicleCategoryViewModel> Search(SearchVehicleCategory searchVehicleCategory);
     }

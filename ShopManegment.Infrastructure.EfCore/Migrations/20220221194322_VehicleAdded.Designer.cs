@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopManegment.Infrastructure.EfCore;
 
 namespace ShopManegment.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(CarDealerShipContext))]
-    partial class CarDealerShipContextModelSnapshot : ModelSnapshot
+    [Migration("20220221194322_VehicleAdded")]
+    partial class VehicleAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,6 +103,10 @@ namespace ShopManegment.Infrastructure.EfCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("CarFunction")
+                        .HasMaxLength(25)
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -117,6 +123,11 @@ namespace ShopManegment.Infrastructure.EfCore.Migrations
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
 
                     b.Property<string>("Name")
                         .IsRequired()

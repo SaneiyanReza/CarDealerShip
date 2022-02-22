@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using ShopManagement.Domain.VehicleAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace ShopManagement.Domain.VehicleCategoryAgg
     public class VehicleCategory : BaseEntity
     {
         public string Name { get; private set; }
-        public string Model { get; private set; }
         public string Description { get; private set; }
         public string Picture { get; private set; }
         public string PictureAlt { get; private set; }
@@ -18,12 +18,17 @@ namespace ShopManagement.Domain.VehicleCategoryAgg
         public string Keyword { get; private set; }
         public string MetaDiscription { get; private set; }
         public string Slug { get; private set; }
+        public List<Vehicle> Vehicles { get; private set; }
 
-        public VehicleCategory(string name, string model , string description, string picture,
+        public VehicleCategory()
+        {
+            Vehicles = new List<Vehicle>();
+        }
+
+        public VehicleCategory(string name, string description, string picture,
             string pictureAlt, string pictureTitle, string keyword, string metaDiscription, string slug)
         {
             Name = name;
-            Model = model;
             Description = description;
             Picture = picture;
             PictureAlt = pictureAlt;
@@ -32,11 +37,10 @@ namespace ShopManagement.Domain.VehicleCategoryAgg
             MetaDiscription = metaDiscription;
             Slug = slug;
         }
-        public void Edit(string name, string model , string description, string picture,
+        public void Edit(string name, string description, string picture,
             string pictureAlt, string pictureTitle, string keyword, string metaDiscription, string slug)
         {
             Name = name;
-            Model = model;
             Description = description;
             Picture = picture;
             PictureAlt = pictureAlt;

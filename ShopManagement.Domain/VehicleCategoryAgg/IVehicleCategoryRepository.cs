@@ -12,6 +12,8 @@ namespace ShopManagement.Domain
 {
     public interface IVehicleCategoryRepository : IRepository<int , VehicleCategory>
     {
+        List<VehicleCategoryViewModel> GetVehicleCategories();
+
         EditVehicleCategory GetDetails(int id);
 
         List<VehicleCategoryViewModel> Search(SearchVehicleCategory searchVehicleCategory);

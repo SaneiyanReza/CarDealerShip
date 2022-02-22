@@ -12,7 +12,7 @@
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد خودرو جدید</a>
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد گروه خودرو جدید</a>
         </p>
     </div>
 </div>
@@ -21,15 +21,13 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">جستجو دربین خودروها</h3>
+                <h3 class="panel-title">جستجو در گروه خودروها</h3>
             </div>
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.Name"></label>
-                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام خودرو">
-                        <label class="sr-only" asp-for="SearchModel.Model"></label>
-                        <input class="form-control" asp-for="SearchModel.Model" placeholder="مدل خودرو">
+                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام گروه خودرو">
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
                     <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="./Index">مشاهده همه</a>
@@ -54,7 +52,6 @@
                                     <th>#</th>
                                     <th>عکس</th>
                                     <th>نام</th>
-                                    <th>مدل</th>
                                     <th>تاریخ تولید</th>
                                     <th>عملیات</th>
                                 </tr>
@@ -68,7 +65,6 @@
                                             <img src="@item.Picture" style="width: 70px; height: 70px" />
                                         </td>
                                         <td>@item.Name</td>
-                                        <td>@item.Model</td>
                                         <td>@item.CreationDate</td>
                                         <td>
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">

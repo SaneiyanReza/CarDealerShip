@@ -12,10 +12,6 @@ namespace ShopManegement.App.VehicleCategories
     {
         [Required(ErrorMessage = Validations.IsRequired)]
         public string Name { get; set; }
-
-        [Required(ErrorMessage = Validations.IsRequired)]
-        public string Model { get; set; }
-
         public string Description { get; set; }
         public string Picture { get; set; }
         public string PictureAlt { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopManegment.Infrastructure.EfCore;
 
 namespace ShopManegment.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(CarDealerShipContext))]
-    partial class CarDealerShipContextModelSnapshot : ModelSnapshot
+    [Migration("20220221200430_ThirdInitDB")]
+    partial class ThirdInitDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

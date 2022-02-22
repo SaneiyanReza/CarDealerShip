@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.VehicleAgg;
 using ShopManagement.Domain.VehicleCategoryAgg;
 using ShopManegment.Infrastructure.EfCore.Mapping;
 using System;
@@ -11,6 +12,7 @@ namespace ShopManegment.Infrastructure.EfCore
 {
     public class CarDealerShipContext : DbContext
     {
+        public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
 
         public CarDealerShipContext(DbContextOptions<CarDealerShipContext> options):base(options)

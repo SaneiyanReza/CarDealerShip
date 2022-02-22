@@ -17,7 +17,6 @@ namespace ShopManegment.Infrastructure.EfCore.Mapping
             builder.HasKey(x=>x.ID);    
 
             builder.Property(x => x.Name).HasMaxLength(225).IsRequired();
-            builder.Property(x => x.Model).HasMaxLength(225).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(500);
             builder.Property(x => x.Picture).HasMaxLength(1000);
             builder.Property(x => x.PictureAlt).HasMaxLength(255);
@@ -25,6 +24,10 @@ namespace ShopManegment.Infrastructure.EfCore.Mapping
             builder.Property(x => x.Keyword).HasMaxLength(80).IsRequired();
             builder.Property(x => x.MetaDiscription).HasMaxLength(150).IsRequired();
             builder.Property(x => x.Slug).HasMaxLength(300).IsRequired();
+
+            builder.HasMany(x => x.Vehicles)
+               .WithOne(x => x.VehicleCategory)
+               .HasForeignKey(x => x.CategoryID);
         }
     }
 }

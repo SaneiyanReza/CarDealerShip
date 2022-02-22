@@ -18,15 +18,15 @@ namespace ShopManegment.App.Concrete
         public OperationResult Create(CreateVehicleCategory createVehicleCategory)
         {
             var operation = new OperationResult();
-            if (_vehicleCategory.Exist(x=>x.Name == createVehicleCategory.Name && x.Model == createVehicleCategory.Model))
+            if (_vehicleCategory.Exist(x=>x.Name == createVehicleCategory.Name))
             {
-                return operation.Faild("لطفا مجددا تلاش کنید.");
+                return operation.Faild(ErrorMessage.DuplicatedRecord);
             }
 
             var slug = createVehicleCategory.Slug.Slugify();
-            var vehicleCategory = new VehicleCategory(createVehicleCategory.Name , createVehicleCategory.Model , createVehicleCategory.Description ,createVehicleCategory.Picture,
-                createVehicleCategory.PictureAlt,createVehicleCategory.PictureTitle , createVehicleCategory.Keyword 
-                , createVehicleCategory.MetaDescription , slug);
+            var vehicleCategory = new VehicleCategory(createVehicleCategory.Name, createVehicleCategory.Description, 
+                createVehicleCategory.Picture,createVehicleCategory.PictureAlt, createVehicleCategory.PictureTitle, createVehicleCategory.Keyword
+                , createVehicleCategory.MetaDescription, slug);
 
             _vehicleCategory.Create(vehicleCategory);
             _vehicleCategory.SaveChanges();
@@ -41,16 +41,16 @@ namespace ShopManegment.App.Concrete
             var vehicleCategory = _vehicleCategory.Get(editVehicleCategory.ID);
             if (vehicleCategory == null)
             {
-                return operation.Faild("لطفا مجددا تلاش کنید.");
+                return operation.Faild(ErrorMessage.RecordNotFound);
             }
 
             if (_vehicleCategory.Exist(x=>x.Name == editVehicleCategory.Name && x.ID != editVehicleCategory.ID))
             {
-                return operation.Faild("لطفا مجددا تلاش کنید.");
+                return operation.Faild(ErrorMessage.DuplicatedRecord);
             }
 
             var slug = editVehicleCategory.Slug.Slugify();
-            vehicleCategory.Edit(editVehicleCategory.Name, editVehicleCategory.Model , editVehicleCategory.Description, editVehicleCategory.Picture,
+            vehicleCategory.Edit(editVehicleCategory.Name,editVehicleCategory.Description, editVehicleCategory.Picture,
                 editVehicleCategory.PictureAlt, editVehicleCategory.PictureTitle, editVehicleCategory.Keyword
                 , editVehicleCategory.MetaDescription, slug);
             _vehicleCategory.SaveChanges();
@@ -61,6 +61,11 @@ namespace ShopManegment.App.Concrete
         public EditVehicleCategory GetDetail(int id)
         {
             return _vehicleCategory.GetDetails(id);
+        }
+
+        public List<VehicleCategoryViewModel> GetVehicleCategories()
+        {
+            return _vehicleCategory.GetVehicleCategories();
         }
 
         public List<VehicleCategoryViewModel> Search(SearchVehicleCategory searchVehicleCategory)
