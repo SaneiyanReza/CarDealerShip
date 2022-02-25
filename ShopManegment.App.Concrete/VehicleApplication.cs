@@ -68,6 +68,11 @@ namespace ShopManegment.App.Concrete
             return _vehicleRepository.GetDetails(id);
         }
 
+        public List<VehicleViewModel> GetVehicles()
+        {
+            return _vehicleRepository.GetVehicles();
+        }
+
         public OperationResult IsAvailable(int id)
         {
             var operation = new OperationResult();

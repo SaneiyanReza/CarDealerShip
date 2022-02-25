@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.VehicleCategoryAgg;
+using ShopManagement.Domain.VehiclePictureAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace ShopManagement.Domain.VehicleAgg
         public string MetaDescription { get; private set; }
         public int CategoryID { get; private set; }
         public VehicleCategory VehicleCategory { get; private set; }
+        public List<VehiclePicture> VehiclePictures { get; private set; }
 
         public Vehicle(string name, string model , double carFunction ,double unitPrice, string shortDescription,
             string description, string picture, string pictureAlt, string pictureTitle, string slug,

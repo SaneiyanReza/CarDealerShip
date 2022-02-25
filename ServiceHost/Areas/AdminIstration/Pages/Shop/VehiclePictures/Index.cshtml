@@ -1,18 +1,18 @@
 ﻿@page
-@model ServiceHost.Areas.Administration.Pages.Shop.Vehicle.IndexModel
+@model ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures.IndexModel
 @{
 }
 
 @{
     Layout = "Shared/_AdminLayout";
-    ViewData["title"] = "مدیریت خودروها";
+    ViewData["title"] = "مدیریت عکس خودروها";
 }
 
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد خودرو جدید</a>
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد عکس خودرو جدید</a>
         </p>
     </div>
 </div>
@@ -21,26 +21,26 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">جستجو در خودروها</h3>
+                <h3 class="panel-title">جستجو در عکس خودروها</h3>
             </div>
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Name"></label>
-                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام خودرو">
+                        <label class="sr-only" asp-for="SearchModel.VehicleID"></label>
+                        <select class="form-control" asp-for="SearchModel.VehicleID" asp-items="Model.Vehicles">
+                            <option value="0">نام خودرو ...</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Model"></label>
-                        <input class="form-control" asp-for="SearchModel.Model" placeholder="مدل">
+                        <label class="sr-only" asp-for="SearchModel.VehicleID"></label>
+                        <select class="form-control" asp-for="SearchModel.VehicleID" asp-items="Model.VehiclesModel">
+                            <option value="0">مدل خودرو ...</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.CarFunction"></label>
-                        <input class="form-control" asp-for="SearchModel.CarFunction" placeholder="کارکرد">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.CategoryID"></label>
-                        <select class="form-control" asp-for="SearchModel.CategoryID" asp-items="Model.VehicleCategories">
-                            <option value="0">گروه خودرو ...</option>
+                        <label class="sr-only" asp-for="SearchModel.VehicleID"></label>
+                        <select class="form-control" asp-for="SearchModel.VehicleID" asp-items="Model.VehiclesCreationDate">
+                            <option value="0">تاریخ ساخت خودرو ...</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
@@ -55,7 +55,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">لیست خودروها</h3>
+                <h3 class="panel-title">لیست عکس خودروها</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -65,37 +65,31 @@
                                 <tr>
                                     <th>#</th>
                                     <th>عکس</th>
-                                    <th>نام</th>
-                                    <th>مدل</th>
-                                    <th>کارکرد</th>
-                                    <th>گروه</th>
-                                    <th>قیمت</th>
-                                    <th>در دسترس</th>
+                                    <th>نام خودرو</th>
+                                    <th>مدل خودرو</th>
+                                    <th>وضعیت</th>
                                     <th>تاریخ تولید</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Vehicle)
+                                @foreach (var item in Model.VehiclePicture)
                                 {
                                     <tr>
                                         <td>@item.ID</td>
                                         <td>
                                             <img src="@item.Picture" style="width: 130px; height: 80px" />
                                         </td>
-                                        <td>@item.Name</td>
-                                        <td>@item.Model</td>
-                                        <td>@item.CarFunction</td>
-                                        <td>@item.CategoryName</td>
-                                        <td>@item.UnitPrice</td>
+                                        <td>@item.VehicleName</td>
+                                        <td>@item.VehicleModel</td>
                                         <td class = "text-center">
-                                            @if (item.IsAvailable)
+                                            @if (item.IsDeleted)
                                             {
-                                                <i class="fa fa-check fa-2x text-success"></i>
+                                                <i class="fa fa-remove fa-2x text-danger"></i>
                                             }
                                             else
                                             {
-                                                <i class="fa fa-remove fa-2x text-danger"></i>
+                                                <i class="fa fa-check fa-2x text-success"></i>
                                             }
                                         </td>
                                         <td>@item.CreationDate</td>
@@ -103,17 +97,17 @@
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            @if(item.IsAvailable)
+                                            @if(item.IsDeleted)
                                             {
-                                                <a asp-page="./Index" asp-page-handler="NotAvailable"
+                                                <a asp-page="./Index" asp-page-handler="Restore"
                                                 asp-route-id="@item.ID" 
-                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> حذف کردن! </a>
+                                                class="btn btn-success btn-custom waves-effect waves-light m-b-5"> فعال سازی </a>
                                             }
                                             else
                                             {
-                                                <a asp-page="./Index" asp-page-handler="Available"
+                                                <a asp-page="./Index" asp-page-handler="Remove"
                                                 asp-route-id="@item.ID"
-                                                class="btn btn-success btn-custom waves-effect waves-lightSpeedOut m-b-5"> اضافه کردن! </a>
+                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> حذف </a>
                                             }
                                         </td>
                                     </tr>

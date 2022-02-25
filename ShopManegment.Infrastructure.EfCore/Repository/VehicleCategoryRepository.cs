@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ShopManegment.Infrastructure.EfCore.Repository
 {
-    public class VehicleCategoryRepository : RepositryBase<int , VehicleCategory> , IVehicleCategoryRepository
+    public class VehicleCategoryRepository : RepositoryBase<int , VehicleCategory> , IVehicleCategoryRepository
     {
         private readonly CarDealerShipContext _context;
         public VehicleCategoryRepository(CarDealerShipContext context) : base(context)

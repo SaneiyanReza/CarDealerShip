@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShopManegment.Infrastructure.EfCore.Repository
 {
-    public class VehicleRepository : RepositryBase<int, Vehicle>, IVehicleRepository
+    public class VehicleRepository : RepositoryBase<int, Vehicle>, IVehicleRepository
     {
         private readonly CarDealerShipContext _context;
         public VehicleRepository(CarDealerShipContext context) : base(context)
@@ -40,9 +40,20 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
             }).FirstOrDefault(x => x.ID == id);
         }
 
+        public List<VehicleViewModel> GetVehicles()
+        {
+            return _context.Vehicles.Select(x => new VehicleViewModel
+            {
+                ID = x.ID,
+                Name = x.Name,
+                Model = x.Model,
+                CreationDate = x.CreationDate.ToString()
+            }).ToList();
+        }
+
         public List<VehicleViewModel> Search(VehicleSearchModel vehicleSearchModel)
         {
-            var quary = _context.Vehicles.Include(x => x.VehicleCategory).Select(x => new VehicleViewModel
+            var query = _context.Vehicles.Include(x => x.VehicleCategory).Select(x => new VehicleViewModel
             {
                 ID = x.ID,
                 Name = x.Name,
@@ -58,22 +69,22 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
 
             if (!string.IsNullOrWhiteSpace(vehicleSearchModel.Name))
             {
-                quary = quary.Where(x => x.Name.Contains(vehicleSearchModel.Name));
+                query = query.Where(x => x.Name.Contains(vehicleSearchModel.Name));
             }
             if (!string.IsNullOrWhiteSpace(vehicleSearchModel.Model))
             {
-                quary = quary.Where(x => x.Model.Contains(vehicleSearchModel.Model));
+                query = query.Where(x => x.Model.Contains(vehicleSearchModel.Model));
             }
             if (vehicleSearchModel.CarFunction != null)
             {
-                quary = quary.Where(x => x.CarFunction == vehicleSearchModel.CarFunction);
+                query = query.Where(x => x.CarFunction == vehicleSearchModel.CarFunction);
             }
             if (vehicleSearchModel.CategoryID != 0)
             {
-                quary = quary.Where(x => x.CategoryID == vehicleSearchModel.CategoryID);
+                query = query.Where(x => x.CategoryID == vehicleSearchModel.CategoryID);
             }
 
-            return quary.OrderByDescending(x => x.ID).ToList();
+            return query.OrderByDescending(x => x.ID).ToList();
         }
     }
 }

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace _0_Framework.Infrastucture
 {
-    public class RepositryBase<Tkey, T> : IRepository<Tkey, T> where T : class
+    public class RepositoryBase<Tkey, T> : IRepository<Tkey, T> where T : class
     {
         private readonly DbContext _context;
 
-        public RepositryBase(DbContext context)
+        public RepositoryBase(DbContext context)
         {
             _context = context;
         }

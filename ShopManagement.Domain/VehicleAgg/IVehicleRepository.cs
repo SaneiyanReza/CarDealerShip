@@ -13,5 +13,7 @@ namespace ShopManagement.Domain.VehicleAgg
         EditVehicle GetDetails(int id);
 
         List<VehicleViewModel> Search(VehicleSearchModel vehicleSearchModel);
+
+        List<VehicleViewModel> GetVehicles();
     }
 }
