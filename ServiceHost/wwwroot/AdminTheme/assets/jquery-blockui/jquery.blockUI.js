@@ -3,11 +3,11 @@
  * Version 2.66.0-2013.10.09
  * Requires jQuery v1.7 or later
  *
- * Examples at: http://malsup.com/jquery/block/
+ * Examples at: https://malsup.com/jquery/block/
  * Copyright (c) 2007-2013 M. Alsup
  * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
+ * https://www.opensource.org/licenses/mit-license.php
+ * https://www.gnu.org/licenses/gpl.html
  *
  * Thanks to Amir-Hossein Sobhi for some excellent contributions!
  */
@@ -32,7 +32,7 @@
 		$.blockUI   = function(opts) { install(window, opts); };
 		$.unblockUI = function(opts) { remove(window, opts); };
 
-		// convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
+		// convenience method for quick growl-like notifications  (https://www.google.com/search?q=growl)
 		$.growlUI = function(title, message, timeout, onClose) {
 			var $m = $('<div class="growlUI"></div>');
 			if (title) $m.append('<h1>'+title+'</h1>');
@@ -232,7 +232,7 @@
 			// setting this will turn the cursor to a pointer, otherwise cursor defined in overlayCss will be used.
 			onOverlayClick: null,
 
-			// don't ask; if you really must know: http://groups.google.com/group/jquery-en/browse_thread/thread/36640a8730503595/2f6a79a77a78e493#2f6a79a77a78e493
+			// don't ask; if you really must know: https://groups.google.com/group/jquery-en/browse_thread/thread/36640a8730503595/2f6a79a77a78e493#2f6a79a77a78e493
 			quirksmodeOffsetHack: 4,
 
 			// class name of the message block

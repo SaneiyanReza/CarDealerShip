@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//   http://www.apache.org/licenses/LICENSE-2.0
+//   https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,9 +25,9 @@
 // * Canvas width/height should is using content-box by default. IE in
 //   Quirks mode will draw the canvas using border-box. Either change your
 //   doctype to HTML5
-//   (http://www.whatwg.org/specs/web-apps/current-work/#the-doctype)
+//   (https://www.whatwg.org/specs/web-apps/current-work/#the-doctype)
 //   or use Box Sizing Behavior from WebFX
-//   (http://webfx.eae.net/dhtml/boxsizing/boxsizing.html)
+//   (https://webfx.eae.net/dhtml/boxsizing/boxsizing.html)
 // * Non uniform scaling does not correctly scale strokes.
 // * Optimize. There is always room for speed improvements.
 
@@ -368,7 +368,7 @@ if (!document.createElement('canvas').getContext) {
 
   contextPrototype.quadraticCurveTo = function(aCPx, aCPy, aX, aY) {
     // the following is lifted almost directly from
-    // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
+    // https://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
 
     var cp = this.getCoords_(aCPx, aCPy);
     var p = this.getCoords_(aX, aY);

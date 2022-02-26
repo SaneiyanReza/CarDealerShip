@@ -54,7 +54,7 @@
                   "<h4 class='modal-title'>" + locale.link.insert + "</h4>" +
                 "</div>" +
                 "<div class='modal-body'>" +
-                  "<input type='text' value='http://' class='bootstrap-wysihtml5-insert-link-url1 form-control large'>" +
+                  "<input type='text' value='https://' class='bootstrap-wysihtml5-insert-link-url1 form-control large'>" +
                   "<label style='margin-top:5px;'> <input type='checkbox' class='bootstrap-wysihtml5-insert-link-target' checked>" + locale.link.target + "</label>" +
                 "</div>" +
                 "<div class='modal-footer'>" +
@@ -79,7 +79,7 @@
                   "<h4 class='modal-title'>" + locale.image.insert + "</h4>" +
                 "</div>" +
                 "<div class='modal-body'>" +
-                  "<input type='text' value='http://' class='bootstrap-wysihtml5-insert-image-url form-control large'>" +
+                  "<input type='text' value='https://' class='bootstrap-wysihtml5-insert-image-url form-control large'>" +
                 "</div>" +
                 "<div class='modal-footer'>" +
                   "<a href='#' class='btn btn-default' data-dismiss='modal'>" + locale.image.cancel + "</a>" +

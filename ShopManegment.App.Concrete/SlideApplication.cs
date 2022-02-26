@@ -22,7 +22,7 @@ namespace ShopManegment.App.Concrete
         {
             var operetion = new OperationResult();
             var slid = new Slide(createSlide.Picture, createSlide.PictureTitle, createSlide.PictureAlt, createSlide.Heading
-                , createSlide.Title, createSlide.Text, createSlide.BtnText);
+                , createSlide.Title, createSlide.Text, createSlide.BtnText , createSlide.Link);
 
             _slideRepository.Create(slid);
             _slideRepository.SaveChanges();
@@ -40,7 +40,7 @@ namespace ShopManegment.App.Concrete
             }
 
             slide.Edit(editSlide.Picture , editSlide.PictureTitle , editSlide.PictureAlt , editSlide.Heading , editSlide.Title,
-                editSlide.Text , editSlide.BtnText );
+                editSlide.Text , editSlide.BtnText , editSlide.Link);
             _slideRepository.SaveChanges();
 
             return operetion.Succedded();

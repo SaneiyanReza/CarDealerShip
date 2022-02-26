@@ -1,6 +1,6 @@
 /*!
  * Chart.js
- * http://chartjs.org/
+ * https://chartjs.org/
  *
  * Copyright 2013 Nick Downie
  * Released under the MIT license
@@ -14,7 +14,7 @@ window.Chart = function(context){
 	
 	
 	//Easing functions adapted from Robert Penner's easing equations
-	//http://www.robertpenner.com/easing/
+	//https://www.robertpenner.com/easing/
 	
 	var animationOptions = {
 		linear : function (t){
@@ -1389,7 +1389,7 @@ window.Chart = function(context){
 	    return returnObj;
 	}
 	
-	//Javascript micro templating by John Resig - source at http://ejohn.org/blog/javascript-micro-templating/
+	//Javascript micro templating by John Resig - source at https://ejohn.org/blog/javascript-micro-templating/
 	  var cache = {};
 	 
 	  function tmpl(str, data){

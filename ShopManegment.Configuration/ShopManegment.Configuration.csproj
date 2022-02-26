@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\01_CarDealerShipQuery\01_CarDealerShipQuery.csproj" />
     <ProjectReference Include="..\ShopManegement.App\ShopManegement.App.csproj" />
     <ProjectReference Include="..\ShopManegment.App.Concrete\ShopManegment.App.Concrete.csproj" />
     <ProjectReference Include="..\ShopManegment.Infrastructure.EfCore\ShopManegment.Infrastructure.EfCore.csproj" />

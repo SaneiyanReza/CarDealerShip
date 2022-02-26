@@ -1,6 +1,6 @@
 /*! X-editable - v1.5.1 
 * In-place editing with Twitter Bootstrap, jQuery UI or pure jQuery
-* http://github.com/vitalets/x-editable
+* https://github.com/vitalets/x-editable
 * Copyright (c) 2013 Vitaliy Potapov; Licensed MIT */
 /**
 Form with single input element, two buttons and two states: normal/loading.
@@ -565,7 +565,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         error: null,
         /**
         Additional options for submit ajax request.
-        List of values: http://api.jquery.com/jQuery.ajax
+        List of values: https://api.jquery.com/jQuery.ajax
         
         @property ajaxOptions 
         @type object
@@ -659,7 +659,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
         /**
         * set caret position in input
-        * see http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
+        * see https://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
         */        
         setCursorPosition: function(elem, pos) {
             if (elem.setSelectionRange) {
@@ -677,7 +677,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         * function to parse JSON in *single* quotes. (jquery automatically parse only double quotes)
         * That allows such code as: <a data-source="{'a': 'b', 'c': 'd'}">
         * safe = true --> means no exception will be thrown
-        * for details see http://stackoverflow.com/questions/7410348/how-to-set-json-format-to-html5-data-attributes-in-the-jquery
+        * for details see https://stackoverflow.com/questions/7410348/how-to-set-json-format-to-html5-data-attributes-in-the-jquery
         */
         tryParseJson: function(s, safe) {
             if (typeof s === 'string' && s.length && s.match(/^[\{\[].*[\}\]]$/)) {
@@ -719,7 +719,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 }
 
                 //when getting data-* attributes via $.data() it's converted to lowercase.
-                //details: http://stackoverflow.com/questions/7602565/using-data-attributes-with-jquery
+                //details: https://stackoverflow.com/questions/7602565/using-data-attributes-with-jquery
                 //workaround is code below.
                 keyLower = key.toLowerCase();
                 if (obj.hasOwnProperty(keyLower)) {
@@ -864,7 +864,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
            }  
        },
        
-       //see http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
+       //see https://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
        supportsTransitions: function () {
            var b = document.body || document.documentElement,
                s = b.style,
@@ -964,7 +964,7 @@ Applied as jQuery method.
 
                     //for some reason FF 20 generates extra event (click) in select2 widget with e.target = document
                     //we need to filter it via construction below. See https://github.com/vitalets/x-editable/issues/199
-                    //Possibly related to http://stackoverflow.com/questions/10119793/why-does-firefox-react-differently-from-webkit-and-ie-to-click-event-on-selec
+                    //Possibly related to https://stackoverflow.com/questions/10119793/why-does-firefox-react-differently-from-webkit-and-ie-to-click-event-on-selec
                     if($target.is(document)) {
                        return; 
                     }
@@ -1392,7 +1392,7 @@ Applied as jQuery method.
 
     /* 
     * workaround to have 'destroyed' event to destroy popover when element is destroyed
-    * see http://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
+    * see https://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
     */
     jQuery.event.special.destroyed = {
         remove: function(o) {
@@ -3388,7 +3388,7 @@ Following types are supported:
 * time
 
 Learn more about html5 inputs:  
-http://www.w3.org/wiki/HTML5_form_additions  
+https://www.w3.org/wiki/HTML5_form_additions  
 To check browser compatibility please see:  
 https://developer.mozilla.org/en-US/docs/HTML/Element/Input
             
@@ -3596,7 +3596,7 @@ Time
 
 /**
 Select2 input. Based on amazing work of Igor Vaynberg https://github.com/ivaynberg/select2.  
-Please see [original select2 docs](http://ivaynberg.github.com/select2) for detailed description and options.  
+Please see [original select2 docs](https://ivaynberg.github.com/select2) for detailed description and options.  
  
 You should manually download and include select2 distributive:  
 
@@ -3904,7 +3904,7 @@ $(function(){
         **/
         tpl:'<input type="hidden">',
         /**
-        Configuration of select2. [Full list of options](http://ivaynberg.github.com/select2).
+        Configuration of select2. [Full list of options](https://ivaynberg.github.com/select2).
 
         @property select2 
         @type object
@@ -3947,10 +3947,10 @@ $(function(){
 * Combodate - 1.0.5
 * Dropdown date and time picker.
 * Converts text input into dropdowns to pick day, month, year, hour, minute and second.
-* Uses momentjs as datetime library http://momentjs.com.
+* Uses momentjs as datetime library https://momentjs.com.
 * For i18n include corresponding file from https://github.com/timrwood/moment/tree/master/lang 
 *
-* Confusion at noon and midnight - see http://en.wikipedia.org/wiki/12-hour_clock#Confusion_at_noon_and_midnight
+* Confusion at noon and midnight - see https://en.wikipedia.org/wiki/12-hour_clock#Confusion_at_noon_and_midnight
 * In combodate: 
 * 12:00 pm --> 12:00 (24-h format, midday)
 * 12:00 am --> 00:00 (24-h format, midnight, start of day)
@@ -3961,7 +3961,7 @@ $(function(){
 * 
 * 
 * Author: Vitaliy Potapov
-* Project page: http://github.com/vitalets/combodate
+* Project page: https://github.com/vitalets/combodate
 * Copyright (c) 2012 Vitaliy Potapov. Released under MIT License.
 **/
 (function ($) {
@@ -4431,7 +4431,7 @@ $(function(){
 }(window.jQuery));
 /**
 Combodate input - dropdown date and time picker.    
-Based on [combodate](http://vitalets.github.com/combodate) plugin (included). To use it you should manually include [momentjs](http://momentjs.com).
+Based on [combodate](https://vitalets.github.com/combodate) plugin (included). To use it you should manually include [momentjs](https://momentjs.com).
 
     <script src="js/moment.min.js"></script>
    
@@ -4577,7 +4577,7 @@ $(function(){
         inputclass: null,
         /**
         Format used for sending value to server. Also applied when converting date from <code>data-value</code> attribute.<br>
-        See list of tokens in [momentjs docs](http://momentjs.com/docs/#/parsing/string-format)  
+        See list of tokens in [momentjs docs](https://momentjs.com/docs/#/parsing/string-format)  
         
         @property format 
         @type string
@@ -4603,7 +4603,7 @@ $(function(){
         template: 'D / MMM / YYYY',  
         /**
         Configuration of combodate.
-        Full list of options: http://vitalets.github.com/combodate/#docs
+        Full list of options: https://vitalets.github.com/combodate/#docs
         
         @property combodate 
         @type object
@@ -4920,7 +4920,7 @@ Editableform based on Twitter Bootstrap 3
 
 /* =========================================================
  * bootstrap-datepicker.js
- * http://www.eyecon.ro/bootstrap-datepicker
+ * https://www.eyecon.ro/bootstrap-datepicker
  * =========================================================
  * Copyright 2012 Stefan Petre
  * Improvements by Andrew Rowls
@@ -4929,7 +4929,7 @@ Editableform based on Twitter Bootstrap 3
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -6371,7 +6371,7 @@ $(function(){
         viewformat: null,
         /**
         Configuration of datepicker.
-        Full list of options: http://bootstrap-datepicker.readthedocs.org/en/latest/options.html
+        Full list of options: https://bootstrap-datepicker.readthedocs.org/en/latest/options.html
 
         @property datepicker 
         @type object

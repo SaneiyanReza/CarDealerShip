@@ -52,6 +52,7 @@
                                     <th>#</th>
                                     <th>عکس</th>
                                     <th>نام</th>
+                                    <th>وضعیت</th>
                                     <th>تاریخ تولید</th>
                                     <th>عملیات</th>
                                 </tr>
@@ -62,14 +63,36 @@
                                     <tr>
                                         <td>@item.ID</td>
                                         <td>
-                                            <img src="@item.Picture" style="width: 130px; height: 80px" />
+                                            <img src="@item.Picture" style="width: 200px; height: 110px">
                                         </td>
                                         <td>@item.Name</td>
+                                        <td class="text-center">
+                                            @if (item.IsDeleted)
+                                            {
+                                                <i class="fa fa-remove fa-2x text-danger"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-check fa-2x text-success"></i>
+                                            }
+                                        </td>
                                         <td>@item.CreationDate</td>
                                         <td>
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
+                                            @if (item.IsDeleted)
+                                            {
+                                                <a asp-page="./Index" asp-page-handler="Restore"
+                                           asp-route-id="@item.ID"
+                                           class="btn btn-success btn-custom waves-effect waves-light m-b-5"> فعال سازی </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-page="./Index" asp-page-handler="Remove"
+                                           asp-route-id="@item.ID"
+                                           class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> حذف </a>
+                                            }
                                         </td>
                                     </tr>
                                 }
@@ -83,12 +106,12 @@
 </div>
 
 @section Scripts {
-    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+<script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+<script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#datatable').dataTable();
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+    });
+</script>
 }

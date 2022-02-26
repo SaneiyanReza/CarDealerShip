@@ -73,5 +73,34 @@ namespace ShopManegment.App.Concrete
             return _vehicleCategory.Search(searchVehicleCategory);
         }
 
+        public OperationResult Remove(int Id)
+        {
+            var operetion = new OperationResult();
+            var vehiclecategory = _vehicleCategory.Get(Id);
+            if (vehiclecategory == null)
+            {
+                return operetion.Faild(ErrorMessage.RecordNotFound);
+            }
+
+            vehiclecategory.Remove();
+            _vehicleCategory.SaveChanges();
+
+            return operetion.Succedded();
+        }
+
+        public OperationResult Restore(int Id)
+        {
+            var operetion = new OperationResult();
+            var vehiclecategory = _vehicleCategory.Get(Id);
+            if (vehiclecategory == null)
+            {
+                return operetion.Faild(ErrorMessage.RecordNotFound);
+            }
+
+            vehiclecategory.Restore();
+            _vehicleCategory.SaveChanges();
+
+            return operetion.Succedded();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastucture;
+﻿using _0_Framework.App;
+using _0_Framework.Infrastucture;
 using ShopManagement.Domain;
 using ShopManagement.Domain.VehicleCategoryAgg;
 using ShopManegement.App.VehicleCategories;
@@ -50,7 +51,8 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 ID = x.ID,
                 Picture = x.Picture,
                 Name = x.Name,
-                CreationDate = x.CreationDate.ToString()
+                CreationDate = x.CreationDate.ToFarsi(),
+                IsDeleted = x.IsDeleted
             });
 
             if (!string.IsNullOrWhiteSpace(searchVehicleCategory.Name))

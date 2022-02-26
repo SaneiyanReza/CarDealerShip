@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastucture;
+﻿using _0_Framework.App;
+using _0_Framework.Infrastucture;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.VehicleAgg;
 using ShopManegement.App.Vehicle;
@@ -47,7 +48,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 ID = x.ID,
                 Name = x.Name,
                 Model = x.Model,
-                CreationDate = x.CreationDate.ToString()
+                CreationDate = x.CreationDate.ToFarsi()
             }).ToList();
         }
 
@@ -63,7 +64,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 CategoryName = x.VehicleCategory.Name,
                 CategoryID = x.CategoryID,
                 Picture = x.Picture,
-                CreationDate = x.CreationDate.ToString(),
+                CreationDate = x.CreationDate.ToFarsi(),
                 IsAvailable = x.IsAvailable
             });
 

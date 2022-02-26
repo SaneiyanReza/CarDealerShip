@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastucture;
+﻿using _0_Framework.App;
+using _0_Framework.Infrastucture;
 using ShopManagement.Domain.SlideAgg;
 using ShopManegement.App.Slide;
 using System;
@@ -24,9 +25,11 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
+                Title = x.Title,
                 Text = x.Text,
                 Heading = x.Heading,
-                BtnText = x.BtnText               
+                BtnText = x.BtnText,
+                Link = x.Link
             }).FirstOrDefault(x => x.ID == id);
         }
 
@@ -39,7 +42,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 Heading = x.Heading,
                 Title = x.Title,
                 IsDeleted = x.IsDeleted,
-                CreationDate =x.CreationDate,
+                CreationDate =x.CreationDate.ToFarsi(),
             }).OrderByDescending(x => x.ID).ToList();
         }
     }

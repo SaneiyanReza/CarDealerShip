@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>_01_CarDealerShipQuery</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopManegment.Infrastructure.EfCore\ShopManegment.Infrastructure.EfCore.csproj" />
+  </ItemGroup>
+
+</Project>

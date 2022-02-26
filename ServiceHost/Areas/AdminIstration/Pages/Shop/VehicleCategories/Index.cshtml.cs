@@ -49,5 +49,27 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehicleCategories
             var result = _vehicleCategoryApplication.Edit(command);
             return new JsonResult(result);
         }
+        public IActionResult OnGetRemove(int id)
+        {
+            var result = _vehicleCategoryApplication.Remove(id);
+            if (result.IsSuccedded)
+            {
+                TempData["Success"] = "Successfully!";
+                return RedirectToPage("./Index");
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        public IActionResult OnGetRestore(int id)
+        {
+            var result = _vehicleCategoryApplication.Restore(id);
+            if (result.IsSuccedded)
+            {
+                return RedirectToPage("./Index");
+            }
+
+            return RedirectToPage("./Index");
+        }
     }
 }

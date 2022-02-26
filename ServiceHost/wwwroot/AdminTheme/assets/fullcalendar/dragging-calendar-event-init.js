@@ -6,7 +6,7 @@ var Script = function () {
 
     $('#external-events div.external-event').each(function() {
 
-        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+        // create an Event Object (https://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
             title: $.trim($(this).text()) // use the element's text as the event title
@@ -54,7 +54,7 @@ var Script = function () {
             copiedEventObject.allDay = allDay;
 
             // render the event on the calendar
-            // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+            // the last `true` argument determines if the event "sticks" (https://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
             $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 
             // is the "remove after drop" checkbox checked?
@@ -107,7 +107,7 @@ var Script = function () {
                 title: 'Click for Google',
                 start: new Date(y, m, 28),
                 end: new Date(y, m, 29),
-                url: 'http://google.com/'
+                url: 'https://google.com/'
             }
         ]
     });

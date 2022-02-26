@@ -88,7 +88,7 @@ function($) {
     };
 
     //turn on full screen
-    // Thanks to http://davidwalsh.name/fullscreen
+    // Thanks to https://davidwalsh.name/fullscreen
     FullScreen.prototype.launchFullscreen  = function(element) {
       if(element.requestFullscreen) {
         element.requestFullscreen();

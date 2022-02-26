@@ -111,7 +111,7 @@
     CalendarApp.prototype.enableDrag = function() {
         //init events
         $(this.$event).each(function () {
-            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // create an Event Object (https://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
             // it doesn't need to have a start or end
             var eventObject = {
                 title: $.trim($(this).text()) // use the element's text as the event title
