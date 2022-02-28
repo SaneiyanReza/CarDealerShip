@@ -41,7 +41,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">لیست خودروها</h3>
+                <h3 class="panel-title">لیست گروه خودروها (@Model.VehicleCategories.Count)</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -85,13 +85,13 @@
                                             {
                                                 <a asp-page="./Index" asp-page-handler="Restore"
                                            asp-route-id="@item.ID"
-                                           class="btn btn-success btn-custom waves-effect waves-light m-b-5"> فعال سازی </a>
+                                           class="btn btn-success btn-custom waves-effect waves-light m-b-5">فعال کردن</a>
                                             }
                                             else
                                             {
                                                 <a asp-page="./Index" asp-page-handler="Remove"
                                            asp-route-id="@item.ID"
-                                           class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> حذف </a>
+                                           class="btn btn-danger btn-custom waves-effect waves-light m-b-5">غیرفعال کردن</a>
                                             }
                                         </td>
                                     </tr>

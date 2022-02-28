@@ -15,35 +15,19 @@
       enctype="multipart/form-data">
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
                 <div class="form-group">
-                    <label asp-for="VehicleID" class="control-label">نام خودرو</label>
+                    <label asp-for="VehicleID" class="control-label" style="c">خودرو</label>
                     <select class="form-control" asp-for="VehicleID" 
-                            asp-items='new SelectList(Model.Vehicles , "ID", "Name" )'>
-                        <option value="0">نام خودرو</option>
+                            asp-items='new SelectList(Model.Vehicles , "ID", "Specifications" )'>
+                        <option value="0">خودرو</option>
                     </select>
                     <span asp-validation-for="VehicleID" class="error"></span>
                 </div>
             </div>
-             <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="VehicleID" class="control-label">مدل خودرو</label>
-                    <select class="form-control" asp-for="VehicleID" 
-                            asp-items='new SelectList(Model.Vehicles , "ID", "Model" )'>
-                        <option value="0">مدل خودرو</option>
-                    </select>
-                    <span asp-validation-for="VehicleID" class="error"></span>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="VehicleID" class="control-label">تاریخ ساخت خودرو</label>
-                    <select class="form-control" asp-for="VehicleID" 
-                            asp-items='new SelectList(Model.Vehicles , "ID", "CreationDate")'>
-                        <option value="0">تاریخ ساخت خودرو</option>
-                    </select>
-                    <span asp-validation-for="VehicleID" class="error"></span>
-                </div>
+            <div class="col-md-2">
             </div>
         </div>
         <div class="row">

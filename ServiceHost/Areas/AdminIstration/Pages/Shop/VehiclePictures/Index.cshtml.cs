@@ -10,10 +10,12 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
     public class IndexModel : PageModel
     {
         public VehiclePictureSearchModel SearchModel;
-        public List<VehiclePictureViewModel> VehiclePicture;
+        public List<VehiclePictureViewModel> VehiclePictures;
         public SelectList Vehicles;
-        public SelectList VehiclesModel;
-        public SelectList VehiclesCreationDate;
+
+        //[TempData]
+        //public string FormResult { get; set; }
+
 
         private readonly IVehicleApplication _vehicleApplication;
         private readonly IVehiclePictureApplication _vehiclePictureApplication;
@@ -26,10 +28,8 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
 
         public void OnGet(VehiclePictureSearchModel searchModel)
         {
-            Vehicles = new SelectList(_vehicleApplication.GetVehicles(), "ID", "Name");
-            VehiclesModel = new SelectList(_vehicleApplication.GetVehicles(), "ID", "Model");
-            VehiclesCreationDate = new SelectList(_vehicleApplication.GetVehicles(), "ID", "CreationDate");
-            VehiclePicture = _vehiclePictureApplication.Search(searchModel);
+            Vehicles = new SelectList(_vehicleApplication.GetVehicles(), "ID", "Specifications");
+            VehiclePictures = _vehiclePictureApplication.Search(searchModel);
         }
 
         public IActionResult OnGetCreate()
@@ -70,10 +70,9 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
             var result = _vehiclePictureApplication.Remove(id);
             if (result.IsSuccedded)
             {
-                TempData["Success"] = "Successfully!";
+                //FormResult = "Successfully!";
                 return RedirectToPage("./Index");
             }
-
             return RedirectToPage("./Index");
         }
 

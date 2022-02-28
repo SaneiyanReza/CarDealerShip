@@ -11,7 +11,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
     public class IndexModel : PageModel
     {
         public VehicleSearchModel SearchModel;
-        public List<VehicleViewModel> Vehicle;
+        public List<VehicleViewModel> Vehicles;
         public SelectList VehicleCategories;
 
         private readonly IVehicleApplication _vehicleApplication;
@@ -26,7 +26,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
         public void OnGet(VehicleSearchModel searchModel)
         {
             VehicleCategories = new SelectList(_vehicleCategoryApplication.GetVehicleCategories(), "ID", "Name");
-            Vehicle = _vehicleApplication.Search(searchModel);
+            Vehicles = _vehicleApplication.Search(searchModel);
         }
 
         public IActionResult OnGetCreate()

@@ -1,17 +1,18 @@
 ﻿@page
-@model ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures.IndexModel
+@model ServiceHost.Areas.Administration.Pages.Discount.CustomerDiscount.IndexModel
 @{
 }
 
 @{
     Layout = "Shared/_AdminLayout";
-    ViewData["title"] = "مدیریت عکس خودروها";
+    ViewData["title"] = "مدیریت تخفیفات مشتریان";
 }
+
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد عکس خودرو جدید</a>
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">تعریف تخفیف مشتریان</a>
         </p>
     </div>
 </div>
@@ -20,10 +21,18 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">جستجو در عکس خودروها</h3>
+                <h3 class="panel-title">جستجو در تخفیف مشتریان</h3>
             </div>
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
+                    <div class="form-group">
+                        <label class="sr-only" asp-for="SearchModel.StartDate"></label>
+                        <input class="form-control persianDateInput" asp-for="SearchModel.StartDate" >
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" asp-for="SearchModel.EndDate"></label>
+                        <input class="form-control persianDateInput" asp-for="SearchModel.EndDate" >
+                    </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.VehicleID"></label>
                         <select class="form-control" asp-for="SearchModel.VehicleID" asp-items="Model.Vehicles">
@@ -42,7 +51,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">لیست عکس خودروها (@Model.VehiclePictures.Count)</h3>
+                <h3 class="panel-title">لیست تخفیفات مشتریان (@Model.CustomerDiscounts.Count)</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -51,53 +60,30 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>عکس</th>
-                                    <th>نام خودرو</th>
-                                    <th>مدل خودرو</th>
-                                    <th>کارکرد خودرو</th>
-                                    <th>وضعیت</th>
+                                    <th>خودرو</th>
+                                    <th>درصد تخفیف</th>
+                                    <th>تاریخ شروع</th>
+                                    <th>تاریخ پایان</th>
+                                    <th>علت تخفیف</th>
                                     <th>تاریخ تولید</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.VehiclePictures)
+                                @foreach (var item in Model.CustomerDiscounts)
                                 {
                                     <tr>
                                         <td>@item.ID</td>
-                                        <td>
-                                            <img src="@item.Picture" style="width: 200px; height: 110px" />
-                                        </td>
-                                        <td>@item.VehicleName</td>
-                                        <td>@item.VehicleModel</td>
-                                        <td>@item.VehicleFunction</td>
-                                        <td class = "text-center">
-                                            @if (item.IsDeleted)
-                                            {
-                                                <i class="fa fa-remove fa-2x text-danger"></i>
-                                            }
-                                            else
-                                            {
-                                                <i class="fa fa-check fa-2x text-success"></i>
-                                            }
-                                        </td>
+                                        <td>@item.Vehicle</td>
+                                        <td>@item.DiscountRate</td>
+                                        <td>@item.StartDate</td>
+                                        <td>@item.EndDate</td>
+                                        <td>@item.Reason</td>
                                         <td>@item.CreationDate</td>
                                         <td>
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            @if(item.IsDeleted)
-                                            {
-                                                <a asp-page="./Index" asp-page-handler="Restore"
-                                                asp-route-id="@item.ID" 
-                                                class="btn btn-success btn-custom waves-effect waves-light m-b-5">فعال کردن</a>
-                                            }
-                                            else
-                                            {
-                                                <a asp-page="./Index" asp-page-handler="Remove"
-                                                asp-route-id="@item.ID"
-                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5">غیرفعال کردن</a>
-                                            }
                                         </td>
                                     </tr>
                                 }

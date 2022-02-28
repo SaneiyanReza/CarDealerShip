@@ -31,11 +31,11 @@
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.Model"></label>
-                        <input class="form-control" asp-for="SearchModel.Model" placeholder="مدل">
+                        <input class="form-control" asp-for="SearchModel.Model" placeholder="مدل خودرو">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.CarFunction"></label>
-                        <input class="form-control" asp-for="SearchModel.CarFunction" placeholder="کارکرد">
+                        <input class="form-control" asp-for="SearchModel.CarFunction" placeholder="کارکرد خودرو">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.CategoryID"></label>
@@ -55,7 +55,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">لیست خودروها</h3>
+                <h3 class="panel-title">لیست خودروها (@Model.Vehicles.Count)</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -76,7 +76,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Vehicle)
+                                @foreach (var item in Model.Vehicles)
                                 {
                                     <tr>
                                         <td>@item.ID</td>
@@ -107,13 +107,13 @@
                                             {
                                                 <a asp-page="./Index" asp-page-handler="NotAvailable"
                                                 asp-route-id="@item.ID" 
-                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> حذف کردن! </a>
+                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> غیرفعال کردن </a>
                                             }
                                             else
                                             {
                                                 <a asp-page="./Index" asp-page-handler="Available"
                                                 asp-route-id="@item.ID"
-                                                class="btn btn-success btn-custom waves-effect waves-lightSpeedOut m-b-5"> اضافه کردن! </a>
+                                                class="btn btn-success btn-custom waves-effect waves-lightSpeedOut m-b-5"> فعال کردن  </a>
                                             }
                                         </td>
                                     </tr>

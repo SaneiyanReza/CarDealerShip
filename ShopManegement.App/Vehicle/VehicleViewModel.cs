@@ -12,5 +12,12 @@
         public int CategoryID { get; set; }
         public string CreationDate { get; set; }
         public bool IsAvailable { get; set; }
+        public string Specifications 
+        {
+            get
+            {
+                return Name + "  " + Model + "  " + CarFunction;
+            }
+        }
     }
 }

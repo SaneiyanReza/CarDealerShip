@@ -41,6 +41,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 ID = p.ID,
                 VehicleName = p.Vehicle.Name,
                 VehicleModel = p.Vehicle.Model,
+                VehicleFunction = p.Vehicle.CarFunction,
                 Picture = p.Picture,
                 CreationDate = p.CreationDate.ToFarsi(),
                 VehicleID = p.VehicleID,
@@ -49,6 +50,14 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
             if (searchModel.VehicleID != 0)
             {
                 query = query.Where(p => p.VehicleID == searchModel.VehicleID);
+            }
+            if (!string.IsNullOrWhiteSpace(searchModel.Model))
+            {
+                query = query.Where(x => x.VehicleModel.Contains(searchModel.Model));
+            }
+            if (searchModel.CarFunction != null)
+            {
+                query = query.Where(x => x.VehicleFunction == searchModel.CarFunction);
             }
 
             return query.OrderByDescending(p => p.ID).ToList();

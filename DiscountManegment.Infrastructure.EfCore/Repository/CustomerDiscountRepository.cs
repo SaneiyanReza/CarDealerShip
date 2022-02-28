@@ -37,17 +37,18 @@ namespace DiscountManegment.Infrastructure.EfCore.Repository
 
         public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel model)
         {
-            var Vehicles = _shipContext.Vehicles.Select(x => new { x.ID, x.Name, x.Model, x.CarFunction }).ToList();
+            var Vehicles = _shipContext.Vehicles.Select(x => new { x.ID, x.Specifications}).ToList();
             var query = _context.CustomerDiscounts.Select(x => new CustomerDiscountViewModel
             {
                 ID = x.ID,
                 VehicleID = x.VehicleID,
                 DiscountRate = x.DiscountRate,
-                StartDate = x.StartDate.ToString(),
+                StartDate = x.StartDate.ToFarsi(),
                 StartDateEn = x.StartDate,
-                EndDate = x.EndDate.ToString(),
+                EndDate = x.EndDate.ToFarsi(),
                 EndDateEn = x.EndDate,
-                Reason = x.Reason
+                Reason = x.Reason,
+                CreationDate = x.CreationDate.ToFarsi()
             });
 
             if (model.VehicleID > 0)
@@ -67,12 +68,7 @@ namespace DiscountManegment.Infrastructure.EfCore.Repository
 
             var discounts = query.OrderByDescending(x => x.ID).ToList();
 
-            discounts.ForEach(discount => discount.VehicleName = Vehicles.FirstOrDefault(x => x.ID == discount.VehicleID 
-            && x.Model == discount.VehicleModel && x.CarFunction == discount.VehicleFunction)?.Name);
-            discounts.ForEach(discount => discount.VehicleName = Vehicles.FirstOrDefault(x => x.ID == discount.VehicleID
-            && x.Model == discount.VehicleModel && x.CarFunction == discount.VehicleFunction)?.Model);
-            discounts.ForEach(discount => discount.VehicleName = Vehicles.FirstOrDefault(x => x.ID == discount.VehicleID
-            && x.Model == discount.VehicleModel && x.CarFunction == discount.VehicleFunction)?.CarFunction.ToString());
+            discounts.ForEach(discount => discount.Vehicle = Vehicles.FirstOrDefault(x => x.ID == discount.VehicleID)?.Specifications);
 
             return discounts;
         }

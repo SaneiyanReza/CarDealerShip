@@ -13,7 +13,7 @@ namespace DiscountManegment.Infrastructure.EfCore.Mapping
     {
         public void Configure(EntityTypeBuilder<CustomerDiscount> builder)
         {
-            builder.ToTable("CustomerDiscount");
+            builder.ToTable("CustomerDiscounts");
             builder.HasKey(x => x.ID);
 
             builder.Property(x => x.Reason).HasMaxLength(500);

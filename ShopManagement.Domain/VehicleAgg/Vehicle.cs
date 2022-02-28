@@ -26,6 +26,13 @@ namespace ShopManagement.Domain.VehicleAgg
         public string Keyword { get; private set; }
         public string MetaDescription { get; private set; }
         public int CategoryID { get; private set; }
+        public string Specifications
+        {
+            get
+            {
+                return Name + "  " + Model + "  " + CarFunction;
+            }
+        }
         public VehicleCategory VehicleCategory { get; private set; }
         public List<VehiclePicture> VehiclePictures { get; private set; }
 

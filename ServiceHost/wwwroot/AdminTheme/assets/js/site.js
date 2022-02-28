@@ -37,7 +37,8 @@ $(document).ready(function () {
             window.location.hash = "##";
             $('.persianDateInput').persianDatepicker({
                 format: 'YYYY/MM/DD',
-                autoClose: true
+                autoClose: true,
+                initialValueType: "persian"
             });
         });
 

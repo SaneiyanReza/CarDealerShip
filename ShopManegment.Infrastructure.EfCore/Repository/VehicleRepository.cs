@@ -48,7 +48,8 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 ID = x.ID,
                 Name = x.Name,
                 Model = x.Model,
-                CreationDate = x.CreationDate.ToFarsi()
+                CreationDate = x.CreationDate.ToFarsi(),
+                CarFunction = x.CarFunction
             }).ToList();
         }
 

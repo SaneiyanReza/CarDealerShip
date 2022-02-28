@@ -18,7 +18,7 @@ namespace ShopManegement.App.Vehicle
         public string Model { get; set; }
 
         [Required(ErrorMessage = Validations.IsRequired)]
-        [Range(0,999999 ,ErrorMessage = Validations.IsRequired)]
+        [Range(0,999999 ,ErrorMessage = Validations.CorrectValues)]
         public double CarFunction { get; set; } = 0;
 
         [Required(ErrorMessage = Validations.IsRequired)]
