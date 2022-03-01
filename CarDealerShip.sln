@@ -31,19 +31,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DiscountManagement", "Disco
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DM.Domain", "DM.Domain", "{B090D964-F651-4E80-91F6-FB7F0D28B1F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManagement.Domain", "DiscountManagement.Domain\DiscountManagement.Domain.csproj", "{00B23888-9921-491C-9817-F8DA24A890A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManagement.Domain", "DiscountManagement.Domain\DiscountManagement.Domain.csproj", "{00B23888-9921-491C-9817-F8DA24A890A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DM.Application", "DM.Application", "{074E1426-06B2-4924-8891-F8196F353DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManagement.App", "DiscountManagement.App\DiscountManagement.App.csproj", "{41F1E695-A1A9-45EC-A064-91EA8FFA2B21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManagement.App", "DiscountManagement.App\DiscountManagement.App.csproj", "{41F1E695-A1A9-45EC-A064-91EA8FFA2B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManegment.App.Concrete", "DiscountManegment.App.Concrete\DiscountManegment.App.Concrete.csproj", "{C3BC25E6-8258-4CEB-AE16-2459BED444ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManegment.App.Concrete", "DiscountManegment.App.Concrete\DiscountManegment.App.Concrete.csproj", "{C3BC25E6-8258-4CEB-AE16-2459BED444ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DM.Infrastructure", "DM.Infrastructure", "{991CA0D6-C12E-40F9-9F2C-E6DB64C90BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManegment.Infrastructure.EfCore", "DiscountManegment.Infrastructure.EfCore\DiscountManegment.Infrastructure.EfCore.csproj", "{8E8A1B7E-B006-422C-A7B7-F51DB131610F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManegment.Infrastructure.EfCore", "DiscountManegment.Infrastructure.EfCore\DiscountManegment.Infrastructure.EfCore.csproj", "{8E8A1B7E-B006-422C-A7B7-F51DB131610F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManagement.Configuration", "DiscountManagement.Configuration\DiscountManagement.Configuration.csproj", "{405FB847-037A-4191-B4F6-EF792EC15922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManagement.Configuration", "DiscountManagement.Configuration\DiscountManagement.Configuration.csproj", "{405FB847-037A-4191-B4F6-EF792EC15922}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

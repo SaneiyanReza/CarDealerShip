@@ -8,6 +8,7 @@ namespace _01_CarDealerShipQuery.Contracts.VehicleCategory
 {
     public interface IVehicleCategoryQuery
     {
+        VehicleCategoryQueryModel GetVehicleCategoryWithVehicles(string slug);
         List<VehicleCategoryQueryModel> GetVehicleCategories();
         List<VehicleCategoryQueryModel> GetVehicleCategoriesWithVehicles();
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using ShopManagement.Domain.SlideAgg;
 using ShopManagement.Domain.VehicleAgg;
 using ShopManagement.Domain.VehicleCategoryAgg;
@@ -18,6 +19,7 @@ namespace ShopManegment.Infrastructure.EfCore
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
         public DbSet<VehiclePicture> VehiclePictures { get; set; }
         public DbSet<Slide> Slides { get; set; }
+
 
         public CarDealerShipContext(DbContextOptions<CarDealerShipContext> options):base(options)
         {

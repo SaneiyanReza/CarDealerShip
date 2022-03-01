@@ -1,6 +1,7 @@
 ﻿using _0_Framework.App;
 using ShopManagement.Domain.SlideAgg;
 using ShopManegement.App.Slide;
+using ShopManegment.Infrastructure.EfCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ShopManegment.App.Concrete
     public class SlideApplication : ISlideApplication
     {
         private readonly ISlideRepository _slideRepository;
-
+        //private UnitOfWork unitOfWork = new UnitOfWork();
         public SlideApplication(ISlideRepository slideRepository)
         {
             _slideRepository = slideRepository;
@@ -22,9 +23,10 @@ namespace ShopManegment.App.Concrete
         {
             var operetion = new OperationResult();
             var slid = new Slide(createSlide.Picture, createSlide.PictureTitle, createSlide.PictureAlt, createSlide.Heading
-                , createSlide.Title, createSlide.Text, createSlide.BtnText , createSlide.Link);
+                , createSlide.Title, createSlide.Text, createSlide.BtnText, createSlide.Link);
 
             _slideRepository.Create(slid);
+            // _slideRepository.Create(slid);
             _slideRepository.SaveChanges();
 
             return operetion.Succedded();
@@ -41,6 +43,7 @@ namespace ShopManegment.App.Concrete
 
             slide.Edit(editSlide.Picture , editSlide.PictureTitle , editSlide.PictureAlt , editSlide.Heading , editSlide.Title,
                 editSlide.Text , editSlide.BtnText , editSlide.Link);
+
             _slideRepository.SaveChanges();
 
             return operetion.Succedded();

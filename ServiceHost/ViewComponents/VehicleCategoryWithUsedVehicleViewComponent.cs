@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.ViewComponents
 {
-    public class VehicleCategoryWithVehicleViewComponent : ViewComponent
+    public class VehicleCategoryWithUsedVehicleViewComponent : ViewComponent
     {
         private readonly IVehicleQuery _vehicleQuery;
 
-        public VehicleCategoryWithVehicleViewComponent(IVehicleQuery vehicleQuery)
+        public VehicleCategoryWithUsedVehicleViewComponent(IVehicleQuery vehicleQuery)
         {
             _vehicleQuery = vehicleQuery;
         }

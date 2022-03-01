@@ -90,5 +90,43 @@ namespace _01_CarDealerShipQuery.Query
             }
             return result;
         }
+
+        public VehicleCategoryQueryModel GetVehicleCategoryWithVehicles(string slug)
+        {
+            var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();
+            var discounts = _discountcontext.CustomerDiscounts.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
+                .Select(x => new { x.DiscountRate, x.VehicleID }).ToList();
+            var category = _context.VehicleCategories.Include(x => x.Vehicles)
+                .ThenInclude(x => x.VehicleCategory).Select(x => new VehicleCategoryQueryModel
+                {
+                    ID = x.ID,
+                    Name = x.Name,
+                    Vehicles = MapVehicles(x.Vehicles),
+                    MetaDescription = x.MetaDiscription,
+                    Description = x.Description,
+                    Keyword = x.Keyword,
+                    Slug = x.Slug
+                }).ToList().FirstOrDefault(x => x.Slug == slug);
+
+
+            foreach (var vehicle in category.Vehicles)
+            {
+                var vehicleModel = vehicles.FirstOrDefault(x => x.ID == vehicle.ID);
+                if (vehicleModel != null)
+                {
+                    var price = vehicleModel.UnitPrice;
+                    var discount = discounts.FirstOrDefault(x => x.VehicleID == vehicle.ID);
+                    if (discount != null)
+                    {
+                        double discountRate = discount.DiscountRate;
+                        vehicle.DiscountRate = discountRate;
+                        vehicle.HasDiscount = discountRate > 0;
+                        var discountAmount = Math.Round((price * discountRate) / 100);
+                        vehicle.PriceWithDiscount = (price - discountAmount).ToMoney();
+                    }
+                }
+            }
+            return category;
+        }
     }
 }

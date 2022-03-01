@@ -1,102 +1,121 @@
 ﻿@model List<_01_CarDealerShipQuery.Contracts.Vehicle.VehicleQueryModel>
+
 @*
-<div class="single-row-slider-area section-space">
+    <div class="single-row-slider-tab-area section-space">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!--=======  section title  =======-->
-                <div class="section-title-wrapper text-center section-space--half">
-                    <h2 class="section-title">خودرو صفر</h2>
-                    <p class="section-subtitle">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-                    </p>
-                </div>
-                <!--=======  End of section title  =======-->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <!--=======  single row slider wrapper  =======-->
-                <div class="single-row-slider-wrapper">
-                    <div class="ht-slick-slider" data-slick-setting='{
-                        "slidesToShow": 4,
-                        "slidesToScroll": 1,
-                        "arrows": true,
-                        "autoplay": false,
-                        "autoplaySpeed": 5000,
-                        "speed": 1000,
-                        "infinite": true,
-                        "rtl": true,
-                        "prevArrow": {"buttonClass": "slick-prev", "iconClass": "ion-chevron-left" },
-                        "nextArrow": {"buttonClass": "slick-next", "iconClass": "ion-chevron-right" }
-                    }' data-slick-responsive='[
-                        {"breakpoint":1501, "settings": {"slidesToShow": 4} },
-                        {"breakpoint":1199, "settings": {"slidesToShow": 4, "arrows": false} },
-                        {"breakpoint":991, "settings": {"slidesToShow": 3, "arrows": false} },
-                        {"breakpoint":767, "settings": {"slidesToShow": 2, "arrows": false} },
-                        {"breakpoint":575, "settings": {"slidesToShow": 2, "arrows": false} },
-                        {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false} }
-                    ]'>
-                        @foreach (var vehicle in Model)
-                        {
-                            var vehicleSpecifications = vehicle.Specifications.Split("  ");
-                            var vehicleFunction = _0_Framework.App.Tools.ToNumber(vehicleSpecifications[2]);
-
-                            @if (vehicleFunction == 0)
-                            {
-                                <div class="col">
-                                    <div class="single-grid-product">
-                                        <div class="single-grid-product__image">
-                                            <div class="single-grid-product__label">
-                                                <span class="sale">-@vehicle.DiscountRate%</span>
-                                            </div>
-                                            <a href="single-product.html">
-                                                <img src="@vehicle.Picture" class="img-fluid" alt="@vehicle.PictureAlt" title="@vehicle.PictureTitle">
-
-                                            </a>
-                                        </div>
-                                        <div class="single-grid-product__content">
-                                            <div class="single-grid-product__category-rating">
-                                                <span class="category"><a href="shop-left-sidebar.html">@vehicle.Category</a></span>
-                                                <span class="rating">
-                                                    <i class="ion-android-star active"></i>
-                                                    <i class="ion-android-star active"></i>
-                                                    <i class="ion-android-star active"></i>
-                                                    <i class="ion-android-star active"></i>
-                                                    <i class="ion-android-star-outline"></i>
-                                                </span>
-                                            </div>
-
-                                            <h3 class="single-grid-product__title">
-                                                <a href="single-product.html">
-                                                    @vehicle.Specifications
-                                                </a>
-                                            </h3>
-
-                                            <p class="single-grid-product__price">
-                                                <span class="discounted-price">@vehicle.PriceWithDiscount تومان</span> 
-                                                <span class="main-price discounted">@vehicle. تومان</span>
-
-
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-
-
-
-                    </div>
-                </div>
-                <!--=======  End of single row slider wrapper  =======-->
-            </div>
-        </div>
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="section-title-wrapper text-center section-space--half">
+    <h2 class="section-title">خودروهای کارکرده</h2>
+    <p class="section-subtitle">
+    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+    </p>
     </div>
-</div>*@
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="tab-slider-wrapper">
+    <div class="tab-product-navigation">
+    <div class="nav nav-tabs justify-content-center" id="nav-tab2" role="tablist">
+    @foreach (var category in Model)
+    {
+    <a class="nav-item nav-link @(Model.First() == category ? "active" : "")" id="product-tab-@category.ID" data-toggle="tab"
+    href="#product-series-@category.ID" role="tab" aria-selected="true">@category.Name</a>
+    }
+    </div>
+    </div>
+    <div class="tab-content">
+    @foreach (var category in Model)
+    {
+    <div class="tab-pane fade show @(Model.First() == category ? "active" : "")" id="product-series-@category.ID" role="tabpanel"
+    aria-labelledby="product-tab-@category.ID">
+    <div class="single-row-slider-wrapper">
+    <div class="ht-slick-slider" data-slick-setting='{
+    "slidesToShow": 4,
+    "slidesToScroll": 1,
+    "arrows": true,
+    "autoplay": false,
+    "autoplaySpeed": 5000,
+    "speed": 1000,
+    "infinite": true,
+    "rtl": true,
+    "prevArrow": {"buttonClass": "slick-prev", "iconClass": "ion-chevron-left" },
+    "nextArrow": {"buttonClass": "slick-next", "iconClass": "ion-chevron-right" }
+    }' data-slick-responsive='[
+    {"breakpoint":1501, "settings": {"slidesToShow": 4} },
+    {"breakpoint":1199, "settings": {"slidesToShow": 4, "arrows": false} },
+    {"breakpoint":991, "settings": {"slidesToShow": 3, "arrows": false} },
+    {"breakpoint":767, "settings": {"slidesToShow": 2, "arrows": false} },
+    {"breakpoint":575, "settings": {"slidesToShow": 2, "arrows": false} },
+    {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false} }
+    ]'>
+    @foreach (var vehicle in category.Vehicles)
+    {
+    var vehicleFunction = vehicle.Specifications.Split("  ");
+    if (vehicleFunction[2] != "0")
+    {
 
+    <div class="col">
+    <div class="single-grid-product">
+    <div class="single-grid-product__image">
+    @if (vehicle.HasDiscount)
+    {
+    <div class="single-grid-product__label">
+    <span class="sale">-@vehicle.DiscountRate%</span>
+    </div>
+    }
+    <a asp-page="/Vehicle" asp-route-id="@vehicle.Slug">
+    <img src="@vehicle.Picture" title="@vehicle.PictureTitle" class="img-fluid"
+    alt="@vehicle.PictureAlt">
+    </a>
+    </div>
+    <div class="single-grid-product__content">
+    <div class="single-grid-product__category-rating">
+    <span class="category">
+    <a asp-page="/VehicleCategory" asp-route-id="@category.Slug">@vehicle.Category</a>
+    </span>
+    <span class="rating">
+    <i class="ion-android-star active"></i>
+    <i class="ion-android-star active"></i>
+    <i class="ion-android-star active"></i>
+    <i class="ion-android-star active"></i>
+    <i class="ion-android-star-outline"></i>
+    </span>
+    </div>
+
+    <h3 class="single-grid-product__title">
+    <a asp-page="/Vehicle" asp-route-id="@vehicle.Slug">
+    @vehicle.Specifications
+    </a>
+    </h3>
+    <p class="single-grid-product__price">
+    @if (vehicle.HasDiscount)
+    {
+    <span class="discounted-price">@vehicle.PriceWithDiscount تومان</span>
+    <span class="main-price discounted">@vehicle.Price تومان</span>
+    }
+    else
+    {
+    <span class="main-price">@vehicle.Price تومان</span>
+    }
+    </p>
+    </div>
+    </div>
+    </div>
+    }
+    }
+    </div>
+    </div>
+    </div>
+    }
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+*@
 
 <div class="single-row-slider-area section-space">
     <div class="container">
@@ -104,7 +123,7 @@
             <div class="col-lg-12">
                 <!--=======  section title  =======-->
                 <div class="section-title-wrapper text-center section-space--half">
-                    <h2 class="section-title">خودرو صفر</h2>
+                    <h2 class="section-title">خودرو کارکرده</h2>
                     <p class="section-subtitle">
                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
                         چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
@@ -140,8 +159,9 @@
                         {
                             var vehicleSpecifications = vehicle.Specifications.Split("  ");
                             var vehicleFunction = _0_Framework.App.Tools.ToNumber(vehicleSpecifications[2]);
-                            if (vehicleFunction == 0)
+                            if (vehicleFunction != 0)
                             {
+
                                 <div class="col">
                                     <div class="single-grid-product">
                                         <div class="single-grid-product__image">
@@ -149,7 +169,6 @@
                                                 @if (vehicle.HasDiscount)
                                                 {
                                                     <span class="sale">-@vehicle.DiscountRate%</span>
-                                                    <span class="new">جدید</span>
                                                 }
                                             </div>
                                             <a asp-page="/Vehicle" asp-route-id="@vehicle.Slug">

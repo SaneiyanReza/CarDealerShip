@@ -1,4 +1,5 @@
 ﻿using _01_CarDealerShipQuery.Contracts.Slide;
+using _01_CarDealerShipQuery.Contracts.Vehicle;
 using _01_CarDealerShipQuery.Contracts.VehicleCategory;
 using _01_CarDealerShipQuery.Query;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,10 @@ namespace ShopManegment.Configuration
             services.AddTransient<ISlideQuery, SlideQuery>();
 
             services.AddTransient<IVehicleCategoryQuery, VehicleCategoryQuery>();
+
+            services.AddTransient<IVehicleQuery, VehicleQuery>();
+
+            services.AddScoped<UnitOfWork , UnitOfWork>();
 
             services.AddDbContext<CarDealerShipContext>(x => x.UseSqlServer(connectionString));
         }
