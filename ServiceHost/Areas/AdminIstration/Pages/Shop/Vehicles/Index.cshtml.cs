@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ShopManegement.App.Vehicle;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManegement.App.VehicleCategories;
+using DiscountManagement.App.CustomerDiscount;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
 {
@@ -64,24 +65,19 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
 
         public IActionResult OnGetAvailable(int id)
         {
-            var result = _vehicleApplication.IsAvailable(id);
-            if (result.IsSuccedded)
-            {
-                TempData["Success"] = "Successfully!";
-                return RedirectToPage("./Index");
-            }
-
+            _vehicleApplication.IsAvailable(id);
             return RedirectToPage("./Index");
         }
 
         public IActionResult OnGetNotAvailable(int id)
         {
-            var result = _vehicleApplication.IsNotAvailable(id);
-            if (result.IsSuccedded)
-            {
-                return RedirectToPage("./Index");
-            }
-
+            _vehicleApplication.IsNotAvailable(id);
+            return RedirectToPage("./Index");
+        }
+        public IActionResult OnGetDeleted(int id)
+        {
+            //var customerId = _customerDiscountApplication.DeleteByID()
+            _vehicleApplication.DeleteByID(id);
             return RedirectToPage("./Index");
         }
     }

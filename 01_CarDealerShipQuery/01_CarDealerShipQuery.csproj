@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiscountManegment.Infrastructure.EfCore\DiscountManegment.Infrastructure.EfCore.csproj" />
     <ProjectReference Include="..\ShopManegment.Infrastructure.EfCore\ShopManegment.Infrastructure.EfCore.csproj" />
   </ItemGroup>
 

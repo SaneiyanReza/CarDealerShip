@@ -14,7 +14,7 @@ namespace ShopManagement.Domain.VehiclePictureAgg
         public string Picture { get; private set; }
         public string PictureTitle { get; private set; }
         public string PictureAlt { get; private set; }
-        public bool IsDeleted { get; private set; }
+        public bool IsRemoved { get; private set; }
         public Vehicle Vehicle { get; private set; }
 
         public VehiclePicture(int vehicleID, string picture, string pictureTitle, string pictureAlt)
@@ -23,7 +23,7 @@ namespace ShopManagement.Domain.VehiclePictureAgg
             Picture = picture;
             PictureTitle = pictureTitle;
             PictureAlt = pictureAlt;
-            IsDeleted = false;
+            IsRemoved = false;
         }
 
         public void Edit(int vehicleID, string picture, string pictureTitle, string pictureAlt)
@@ -36,12 +36,12 @@ namespace ShopManagement.Domain.VehiclePictureAgg
 
         public void Remove()
         {
-            IsDeleted = true;
+            IsRemoved = true;
         }
 
         public void Restore()
         {
-            IsDeleted=false;
+            IsRemoved = false;
         }
     }
 }

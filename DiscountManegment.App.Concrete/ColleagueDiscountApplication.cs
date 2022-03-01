@@ -97,5 +97,19 @@ namespace DiscountManegment.App.Concrete
         {
             return _colleagueDiscountRepository.Search(discountSearchModel);
         }
+
+        OperationResult IColleagueDiscountApplication.DeleteByID(int id)
+        {
+            var operation = new OperationResult();
+            var ColleagueDiscount = _colleagueDiscountRepository.DeleteByID(id);
+
+            if (!ColleagueDiscount)
+            {
+                return operation.Faild("خطا!");
+            }
+
+            _colleagueDiscountRepository.SaveChanges();
+            return operation.Succedded();
+        }
     }
 }

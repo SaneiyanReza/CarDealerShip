@@ -62,39 +62,42 @@
                             <tbody>
                                 @foreach (var item in Model.ColleagueDiscounts)
                                 {
-                                    <tr>
-                                        <td>@item.ID</td>
-                                        <td>@item.Vehicle</td>
-                                        <td>@item.DiscountRate%</td>
-                                        <td class="text-center">
-                                            @if (!item.IsRemoved)
-                                            {
-                                                <i class="fa fa-check fa-2x text-success"></i>
-                                            }
-                                            else
-                                            {
-                                                <i class="fa fa-remove fa-2x text-danger"></i>
-                                            }
-                                        </td>
-                                        <td>@item.CreationDate</td>
-                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
-                                                <i class="fa fa-edit"></i> ویرایش
-                                            </a>
-                                            @if(item.IsRemoved)
-                                            {
-                                                <a asp-page="./Index" asp-page-handler="Restore"
-                                                asp-route-id="@item.ID" 
-                                                class="btn btn-success btn-custom waves-effect waves-light m-b-5">فعال کردن</a>
-                                            }
-                                            else
-                                            {
-                                                <a asp-page="./Index" asp-page-handler="Remove"
-                                                asp-route-id="@item.ID"
-                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5">غیرفعال کردن</a>
-                                            }
-                                        </td>
-                                    </tr>
+                                    @if (@item.Vehicle != null)
+                                    {
+                                        <tr>
+                                            <td>@item.ID</td>
+                                            <td>@item.Vehicle</td>
+                                            <td>@item.DiscountRate%</td>
+                                            <td class="text-center">
+                                                @if (!item.IsRemoved)
+                                                {
+                                                    <i class="fa fa-check fa-2x text-success"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-remove fa-2x text-danger"></i>
+                                                }
+                                            </td>
+                                            <td>@item.CreationDate</td>
+                                            <td>
+                                                <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
+                                                    <i class="fa fa-edit"></i> ویرایش
+                                                </a>
+                                                @if (item.IsRemoved)
+                                                {
+                                                    <a asp-page="./Index" asp-page-handler="Restore"
+                                           asp-route-id="@item.ID"
+                                           class="btn btn-success btn-custom waves-effect waves-light m-b-5">فعال کردن</a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-page="./Index" asp-page-handler="Remove"
+                                           asp-route-id="@item.ID"
+                                           class="btn btn-danger btn-custom waves-effect waves-light m-b-5">غیرفعال کردن</a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
                                 }
                             </tbody>
                         </table>

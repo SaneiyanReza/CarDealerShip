@@ -11,6 +11,6 @@ namespace ShopManegement.App.VehiclePicture
         public string Picture { get; set; }
         public string CreationDate { get; set; }
         public int VehicleID { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsRemoved { get; set; }
     }
 }

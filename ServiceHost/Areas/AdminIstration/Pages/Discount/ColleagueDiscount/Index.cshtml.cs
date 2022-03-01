@@ -26,6 +26,13 @@ namespace ServiceHost.Areas.Administration.Pages.Discount.ColleagueDiscount
         {
             Vehicles = new SelectList(_vehicleApplication.GetVehicles(), "ID", "Specifications");
             ColleagueDiscounts = _colleagueDiscountApplication.Search(searchModel);
+            foreach (var item in ColleagueDiscounts)
+            {
+                if (item.Vehicle == null)
+                {
+                    _colleagueDiscountApplication.DeleteByID(item.ID);
+                }
+            }
         }
 
         public IActionResult OnGetCreate()
@@ -70,6 +77,11 @@ namespace ServiceHost.Areas.Administration.Pages.Discount.ColleagueDiscount
         public IActionResult OnGetRestore(int id)
         {
             _colleagueDiscountApplication.Restore(id);
+            return RedirectToPage("./Index");
+        }
+        public IActionResult OnGetDeleted(int id)
+        {
+            _vehicleApplication.DeleteByID(id);
             return RedirectToPage("./Index");
         }
     }

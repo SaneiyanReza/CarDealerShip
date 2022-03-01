@@ -19,6 +19,18 @@ namespace DiscountManegment.Infrastructure.EfCore.Repository
             _shipContext = shipContext;
         }
 
+        public bool DeleteByID(int id)
+        {
+            var discount = (from d in _context.ColleagueDiscounts where (d.ID == id) select d).FirstOrDefault(x => x.ID == id);
+
+            if (discount != null)
+            {
+                _context.Remove(discount);
+                return true;
+            }
+            return false;
+        }
+
         public EditColleagueDiscount GetDetails(int id)
         {
             return _context.ColleagueDiscounts.Select(x => new EditColleagueDiscount

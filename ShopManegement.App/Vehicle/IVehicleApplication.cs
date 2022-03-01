@@ -13,9 +13,9 @@ namespace ShopManegement.App.Vehicle
         OperationResult Edit(EditVehicle editVehicle);
         OperationResult IsAvailable(int id);
         OperationResult IsNotAvailable(int id);
+        OperationResult DeleteByID(int id);
         EditVehicle GetDetails(int id);
         List<VehicleViewModel> Search(VehicleSearchModel searchModel);
         List<VehicleViewModel> GetVehicles();
-
     }
 }

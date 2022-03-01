@@ -52,7 +52,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 Picture = x.Picture,
                 Name = x.Name,
                 CreationDate = x.CreationDate.ToFarsi(),
-                IsDeleted = x.IsDeleted
+                IsRemoved = x.IsRemoved
             });
 
             if (!string.IsNullOrWhiteSpace(searchVehicleCategory.Name))

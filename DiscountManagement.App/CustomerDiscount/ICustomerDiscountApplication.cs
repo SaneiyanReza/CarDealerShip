@@ -11,6 +11,7 @@ namespace DiscountManagement.App.CustomerDiscount
     {
         OperationResult Define(DefineCustomerDiscount customerDiscount);
         OperationResult Edit(EditCustomerDiscount customerDiscount);
+        void DeleteByID(int id);
         List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel model);
         EditCustomerDiscount GetDetails(int id);
     }

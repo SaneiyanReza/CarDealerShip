@@ -1,0 +1,8 @@
+.style input{
+    border: none;
+    outline: none;
+    width: 15%;
+    background: none;
+    color: #555;
+    padding: 20px 10px 20px 5px;
+}

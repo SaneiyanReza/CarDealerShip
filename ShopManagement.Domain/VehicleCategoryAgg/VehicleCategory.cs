@@ -18,7 +18,7 @@ namespace ShopManagement.Domain.VehicleCategoryAgg
         public string Keyword { get; private set; }
         public string MetaDiscription { get; private set; }
         public string Slug { get; private set; }
-        public bool IsDeleted { get; private set; }
+        public bool IsRemoved { get; private set; }
         public List<Vehicle> Vehicles { get; private set; }
 
         public VehicleCategory()
@@ -37,7 +37,7 @@ namespace ShopManagement.Domain.VehicleCategoryAgg
             Keyword = keyword;
             MetaDiscription = metaDiscription;
             Slug = slug;
-            IsDeleted = false;
+            IsRemoved = false;
         }
         public void Edit(string name, string description, string picture,
             string pictureAlt, string pictureTitle, string keyword, string metaDiscription, string slug)
@@ -53,12 +53,12 @@ namespace ShopManagement.Domain.VehicleCategoryAgg
         }
         public void Remove()
         {
-            IsDeleted = true;
+            IsRemoved = true;
         }
 
         public void Restore()
         {
-            IsDeleted = false;
+            IsRemoved = false;
         }
     }
 }

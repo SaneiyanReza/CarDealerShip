@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShopManagement.Domain.VehicleAgg;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManegment.Infrastructure.EfCore.Mapping
 {
@@ -13,7 +8,7 @@ namespace ShopManegment.Infrastructure.EfCore.Mapping
     {
         public void Configure(EntityTypeBuilder<Vehicle> builder)
         {
-            builder.ToTable("Vehicle");
+            builder.ToTable("Vehicles");
             builder.HasKey(x => x.ID);
 
             builder.Property(x => x.Name).HasMaxLength(255).IsRequired();

@@ -12,14 +12,24 @@ using System.Threading.Tasks;
 
 namespace DiscountManegment.Infrastructure.EfCore.Repository
 {
-    public class CustomerDiscountRepository : RepositoryBase<int , CustomerDiscount> , ICustomerDiscountRepository
+    public class CustomerDiscountRepository : RepositoryBase<int, CustomerDiscount>, ICustomerDiscountRepository
     {
         private readonly DiscountContext _context;
         private readonly CarDealerShipContext _shipContext;
-        public CustomerDiscountRepository(DiscountContext context , CarDealerShipContext shipContext) : base(context)
+        public CustomerDiscountRepository(DiscountContext context, CarDealerShipContext shipContext) : base(context)
         {
             _context = context;
             _shipContext = shipContext;
+        }
+
+        public void DeleteByID(int id)
+        {
+            var discount = (from d in _context.CustomerDiscounts where (d.ID == id) select d).FirstOrDefault(x => x.ID == id);
+
+            if (discount != null)
+            {
+                _context.Remove(discount);
+            }
         }
 
         public EditCustomerDiscount GetDetails(int id)
@@ -37,7 +47,7 @@ namespace DiscountManegment.Infrastructure.EfCore.Repository
 
         public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel model)
         {
-            var Vehicles = _shipContext.Vehicles.Select(x => new { x.ID, x.Specifications}).ToList();
+            var Vehicles = _shipContext.Vehicles.Select(x => new { x.ID, x.Specifications }).ToList();
             var query = _context.CustomerDiscounts.Select(x => new CustomerDiscountViewModel
             {
                 ID = x.ID,

@@ -27,11 +27,11 @@
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.StartDate"></label>
-                        <input class="form-control persianDateInput" asp-for="SearchModel.StartDate" >
+                        <input class="form-control persianDateInput" asp-for="SearchModel.StartDate">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.EndDate"></label>
-                        <input class="form-control persianDateInput" asp-for="SearchModel.EndDate" >
+                        <input class="form-control persianDateInput" asp-for="SearchModel.EndDate">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.VehicleID"></label>
@@ -72,20 +72,23 @@
                             <tbody>
                                 @foreach (var item in Model.CustomerDiscounts)
                                 {
-                                    <tr>
-                                        <td>@item.ID</td>
-                                        <td>@item.Vehicle</td>
-                                        <td>@item.DiscountRate</td>
-                                        <td>@item.StartDate</td>
-                                        <td>@item.EndDate</td>
-                                        <td>@item.Reason</td>
-                                        <td>@item.CreationDate</td>
-                                        <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
-                                                <i class="fa fa-edit"></i> ویرایش
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @if (@item.Vehicle != null)
+                                    {
+                                        <tr>
+                                            <td>@item.ID</td>
+                                            <td>@item.Vehicle</td>
+                                            <td>@item.DiscountRate</td>
+                                            <td>@item.StartDate</td>
+                                            <td>@item.EndDate</td>
+                                            <td>@item.Reason</td>
+                                            <td>@item.CreationDate</td>
+                                            <td>
+                                                <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
+                                                    <i class="fa fa-edit"></i> ویرایش
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
                             </tbody>
                         </table>
@@ -97,12 +100,12 @@
 </div>
 
 @section Scripts {
-    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+<script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+<script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#datatable').dataTable();
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+    });
+</script>
 }

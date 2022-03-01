@@ -11,9 +11,7 @@ namespace _0_Framework.Domain
     {
         T Get(Tkey key);
         List<T> GetAll();
-
         void Create(T entity);
-
         bool Exist(Expression<Func<T, bool>> expression);
         void SaveChanges();
     }

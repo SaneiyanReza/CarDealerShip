@@ -7,6 +7,6 @@
         public string Picture { get; set; }
         public string CreationDate { get; set; }
         public int VehicleCount { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsRemoved { get; set; }
     }
 }

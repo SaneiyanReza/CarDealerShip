@@ -45,7 +45,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
                 Picture = p.Picture,
                 CreationDate = p.CreationDate.ToFarsi(),
                 VehicleID = p.VehicleID,
-                IsDeleted = p.IsDeleted
+                IsRemoved = p.IsRemoved
             });
             if (searchModel.VehicleID != 0)
             {

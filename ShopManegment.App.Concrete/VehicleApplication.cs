@@ -107,5 +107,19 @@ namespace ShopManegment.App.Concrete
         {
             return _vehicleRepository.Search(searchModel);
         }
+
+        OperationResult IVehicleApplication.DeleteByID(int id)
+        {
+            var operation = new OperationResult();
+            var vehicle = _vehicleRepository.DeleteByID(id);
+
+            if (!vehicle)
+            {
+                return operation.Faild("خطا!");
+            }
+
+            _vehicleRepository.SaveChanges();
+            return operation.Succedded();
+        }
     }
 }

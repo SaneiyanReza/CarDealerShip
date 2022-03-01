@@ -20,7 +20,7 @@ namespace _01_CarDealerShipQuery.Query
 
         public  List<SlideQueryModel> GetSlides()
         {
-            return _Context.Slides.Where(x => x.IsDeleted == false).Select(x => new SlideQueryModel
+            return _Context.Slides.Where(x => x.IsRemoved == false).Select(x => new SlideQueryModel
             {
                 BtnText = x.BtnText,
                 Heading = x.Heading,

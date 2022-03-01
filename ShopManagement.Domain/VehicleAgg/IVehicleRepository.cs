@@ -15,5 +15,7 @@ namespace ShopManagement.Domain.VehicleAgg
         List<VehicleViewModel> Search(VehicleSearchModel vehicleSearchModel);
 
         List<VehicleViewModel> GetVehicles();
+
+        bool DeleteByID(int id);
     }
 }

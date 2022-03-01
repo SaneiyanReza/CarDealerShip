@@ -70,5 +70,10 @@ namespace DiscountManegment.App.Concrete
         {
             return _customerDiscountRepository.Search(model);
         }
+        public void DeleteByID(int id)
+        {
+            _customerDiscountRepository.DeleteByID(id);
+            _customerDiscountRepository.SaveChanges();
+        }
     }
 }

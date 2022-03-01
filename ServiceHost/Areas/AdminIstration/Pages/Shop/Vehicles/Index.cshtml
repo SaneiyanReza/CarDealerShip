@@ -88,7 +88,7 @@
                                         <td>@item.CarFunction</td>
                                         <td>@item.CategoryName</td>
                                         <td>@item.UnitPrice</td>
-                                        <td class = "text-center">
+                                        <td class="text-center">
                                             @if (item.IsAvailable)
                                             {
                                                 <i class="fa fa-check fa-2x text-success"></i>
@@ -103,18 +103,23 @@
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            @if(item.IsAvailable)
+                                            @if (item.IsAvailable)
                                             {
                                                 <a asp-page="./Index" asp-page-handler="NotAvailable"
-                                                asp-route-id="@item.ID" 
-                                                class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> غیرفعال کردن </a>
+                                           asp-route-id="@item.ID"
+                                           class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> غیرفعال کردن </a>
                                             }
                                             else
                                             {
                                                 <a asp-page="./Index" asp-page-handler="Available"
-                                                asp-route-id="@item.ID"
-                                                class="btn btn-success btn-custom waves-effect waves-lightSpeedOut m-b-5"> فعال کردن  </a>
+                                           asp-route-id="@item.ID"
+                                           class="btn btn-success btn-custom waves-effect waves-lightSpeedOut m-b-5"> فعال کردن  </a>
                                             }
+                                            <a asp-page="./Index" asp-page-handler="Deleted"
+                                           asp-route-id="@item.ID"
+                                            onclick="return confirm('آیا مطمئن هستید که می خواهید این خودرو را حذف کنید؟')"
+                                           class="btn btn-danger btn-custom waves-effect waves-light m-b-5"> حذف! </a>
+
                                         </td>
                                     </tr>
                                 }
@@ -128,12 +133,12 @@
 </div>
 
 @section Scripts {
-    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+<script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+<script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#datatable').dataTable();
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+    });
+</script>
 }

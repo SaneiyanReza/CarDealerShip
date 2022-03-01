@@ -19,6 +19,18 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
             _context = context;
         }
 
+        public bool DeleteByID(int id)
+        {
+            var vehicle = (from v in _context.Vehicles where(v.ID == id) select v).FirstOrDefault(x => x.ID == id);
+
+            if (vehicle != null)
+            {
+                _context.Remove(vehicle);
+                return true;
+            }
+            return false;
+        }
+
         public EditVehicle GetDetails(int id)
         {
             return _context.Vehicles.Select(c => new EditVehicle

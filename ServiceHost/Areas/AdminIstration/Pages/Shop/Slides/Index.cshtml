@@ -50,7 +50,7 @@
                                         <td>@item.Heading</td>
                                          <td>@item.Title</td>
                                         <td class = "text-center">
-                                            @if (item.IsDeleted)
+                                            @if (item.IsRemoved)
                                             {
                                                 <i class="fa fa-remove fa-2x text-danger"></i>
                                             }
@@ -64,7 +64,7 @@
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            @if(item.IsDeleted)
+                                            @if(item.IsRemoved)
                                             {
                                                 <a asp-page="./Index" asp-page-handler="Restore"
                                                 asp-route-id="@item.ID" 

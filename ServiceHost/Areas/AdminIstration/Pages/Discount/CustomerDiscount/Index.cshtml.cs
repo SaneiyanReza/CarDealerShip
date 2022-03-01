@@ -23,10 +23,18 @@ namespace ServiceHost.Areas.Administration.Pages.Discount.CustomerDiscount
             _customerDiscountApplication = customerDiscountApplication;
         }
 
-        public void OnGet(CustomerDiscountSearchModel searchModel)
+        public void OnGet(CustomerDiscountSearchModel searchModel , CustomerDiscountViewModel model)
         {
+            
             Vehicles = new SelectList(_vehicleApplication.GetVehicles(), "ID", "Specifications");
             CustomerDiscounts = _customerDiscountApplication.Search(searchModel);
+            foreach (var item in CustomerDiscounts)
+            {
+                if (item.Vehicle == null)
+                {
+                    _customerDiscountApplication.DeleteByID(item.ID);
+                }
+            }
         }
 
         public IActionResult OnGetCreate()
@@ -55,10 +63,6 @@ namespace ServiceHost.Areas.Administration.Pages.Discount.CustomerDiscount
 
         public JsonResult OnPostEdit(EditCustomerDiscount command)
         {
-            if (ModelState.IsValid)
-            {
-            }
-
             var result = _customerDiscountApplication.Edit(command);
             return new JsonResult(result);
         }

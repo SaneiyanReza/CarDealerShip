@@ -2566,6 +2566,14 @@ output {
        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.style {
+    display: block;
+    width: 200px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: inset 8px 8px 8px #d0d5d8e1, inset -8px -8px 8px #f7f7f7;
+}
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;

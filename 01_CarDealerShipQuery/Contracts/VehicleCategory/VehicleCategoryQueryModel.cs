@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _01_CarDealerShipQuery.Contracts.Vehicle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace _01_CarDealerShipQuery.Contracts.VehicleCategory
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
         public string Slug { get; set; }
+        public List<VehicleQueryModel> Vehicles { get; set; }
     }
 }

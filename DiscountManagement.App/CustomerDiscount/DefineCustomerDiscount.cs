@@ -12,7 +12,7 @@ namespace DiscountManagement.App.CustomerDiscount
 
         [Range(1, 99.99, ErrorMessage = Validations.CorrectValues)]
         [Required(ErrorMessage = Validations.IsRequired)]
-        public double DiscountRate { get; set; }
+        public double DiscountRate { get; set; } = 1;
 
         [Required(ErrorMessage = Validations.IsRequired)]
         public string StartDate { get; set; }

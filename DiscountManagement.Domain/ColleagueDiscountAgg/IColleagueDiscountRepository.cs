@@ -12,5 +12,6 @@ namespace DiscountManagement.Domain.ColleagueDiscountAgg
     {
         EditColleagueDiscount GetDetails(int id);
         List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel discountSearchModel);
+        bool DeleteByID(int id);
     }
 }

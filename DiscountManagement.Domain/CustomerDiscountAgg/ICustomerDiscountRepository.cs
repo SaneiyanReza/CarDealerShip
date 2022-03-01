@@ -12,5 +12,6 @@ namespace DiscountManagement.Domain.CustomerDiscountAgg
     {
         List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel model);
         EditCustomerDiscount GetDetails(int id);
+        void DeleteByID(int id);
     }
 }

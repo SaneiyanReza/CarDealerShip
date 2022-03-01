@@ -13,6 +13,7 @@ namespace DiscountManagement.App.ColleagueDiscount
         OperationResult Edit(EditColleagueDiscount editColleague);
         OperationResult Romove(int id);
         OperationResult Restore(int id);
+        OperationResult DeleteByID(int id);
         EditColleagueDiscount GetDetails(int id);
         List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel discountSearchModel);
     }
