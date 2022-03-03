@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject _0_Framework.App.IAuthHelper AuthHelper
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -60,7 +62,7 @@
                                                         <a href="my-account.html">My Account</a>
                                                     </li>
                                                     <li>
-                                                        <a href="login-register.html">Login Register</a>
+                                                        <a href="login.html">Login</a>
                                                     </li>
                                                     <li>
                                                         <a href="faq.html">FAQ</a>
@@ -72,9 +74,6 @@
                                                 <ul class="sub-menu">
                                                     <li>
                                                         <a href="compare.html">Compare</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="contact.html">Contact</a>
                                                     </li>
                                                     <li>
                                                         <a href="about.html">About Us</a>
@@ -114,9 +113,18 @@
                                         </ul>
                                     </li>
 
-                                    <li>
-                                        <a href="contact.html">CONTACT</a>
-                                    </li>
+                                    @if (!AuthHelper.IsAuthenticated())
+                                    {
+                                        <li>
+                                            <a asp-page="/Account">ورود</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-page="/Account" asp-page-handler="Logout">خروج</a>
+                                        </li>
+                                    }
                                 </ul>
                             </nav>
                         </div>
@@ -144,7 +152,7 @@
                                                     <div class="image">
                                                         <a href="single-product.html">
                                                             <img src="~/Theme/assets/img/products/product-1-80x106.jpg"
-                                                                class="img-fluid" alt="">
+                                                                 class="img-fluid" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="content">
@@ -161,7 +169,7 @@
                                                     <div class="image">
                                                         <a href="single-product.html">
                                                             <img src="~/Theme/assets/img/products/product-2-80x106.jpg"
-                                                                class="img-fluid" alt="">
+                                                                 class="img-fluid" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="content">
@@ -178,7 +186,7 @@
                                                     <div class="image">
                                                         <a href="single-product.html">
                                                             <img src="~/Theme/assets/img/products/product-3-80x106.jpg"
-                                                                class="img-fluid" alt="">
+                                                                 class="img-fluid" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="content">
@@ -221,7 +229,7 @@
                                 <li>
                                     <div class="header-settings-icon">
                                         <a href="javascript:void(0)" class="header-settings-trigger"
-                                            id="header-settings-trigger">
+                                           id="header-settings-trigger">
                                             <div class="setting-button">
                                                 <span></span>
                                                 <span></span>
@@ -257,12 +265,14 @@
                                                 <h4 class="title">LANGUAGE: EN-GB </h4>
                                                 <ul>
                                                     <li>
-                                                        <a href="javascript:void(0)"><img
-                                                                src="~/Theme/assets/img/icons/en-gb.png" alt=""> English</a>
+                                                        <a href="javascript:void(0)">
+                                                            <img src="~/Theme/assets/img/icons/en-gb.png" alt=""> English
+                                                        </a>
                                                     </li>
                                                     <li>
-                                                        <a href="javascript:void(0)"><img
-                                                                src="~/Theme/assets/img/icons/de-de.png" alt=""> Germany </a>
+                                                        <a href="javascript:void(0)">
+                                                            <img src="~/Theme/assets/img/icons/de-de.png" alt=""> Germany
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -298,7 +308,7 @@
                                             </li>
                                             <li>
                                                 <a href="javascript:void(0)" class="mobile-menu-icon"
-                                                    id="mobile-menu-trigger">
+                                                   id="mobile-menu-trigger">
                                                     <i class="fa fa-bars"></i>
                                                 </a>
                                             </li>
@@ -316,7 +326,6 @@
         </div>
     </div>
     <!--====================  End of header area  ====================-->
-
     @RenderBody()
     <!--====================  footer area ====================-->
     <div class="footer-area">
@@ -614,12 +623,16 @@
                                 <a href="#">LANGUAGE: EN-GB </a>
                                 <ul class="sub-menu">
                                     <li>
-                                        <a href="javascript:void(0)"><img src="~/Theme/assets/img/icons/en-gb.png" alt="">
-                                            English</a>
+                                        <a href="javascript:void(0)">
+                                            <img src="~/Theme/assets/img/icons/en-gb.png" alt="">
+                                            English
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)"><img src="~/Theme/assets/img/icons/de-de.png" alt="">
-                                            Germany</a>
+                                        <a href="javascript:void(0)">
+                                            <img src="~/Theme/assets/img/icons/de-de.png" alt="">
+                                            Germany
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -632,12 +645,13 @@
                         <div class="header-contact-info">
                             <ul class="header-contact-info__list">
                                 <li>
-                                    <i class="ion-android-phone-portrait"></i> <a href="tel://12452456012">(1245) 2456
-                                        012 </a>
+                                    <i class="ion-android-phone-portrait"></i> <a href="tel://12452456012">
+                                        (1245) 2456
+                                        012
+                                    </a>
                                 </li>
                                 <li>
-                                    <i class="ion-android-mail"></i> <a
-                                        href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+                                    <i class="ion-android-mail"></i> <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
                                 </li>
                             </ul>
                         </div>

@@ -1,6 +1,7 @@
 ﻿using _0_Framework.App;
 using DiscountManagement.App.ColleagueDiscount;
 using DiscountManagement.Domain.ColleagueDiscountAgg;
+using DiscountManagement.Domain.UnitOfWorkAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,19 @@ namespace DiscountManegment.App.Concrete
 {
     public class ColleagueDiscountApplication : IColleagueDiscountApplication
     {
-        private readonly IColleagueDiscountRepository _colleagueDiscountRepository;
+        //private readonly IColleagueDiscountRepository _colleagueDiscountRepository;
 
-        public ColleagueDiscountApplication(IColleagueDiscountRepository colleagueDiscountRepository)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ColleagueDiscountApplication(IUnitOfWork unitOfWork)
         {
-            _colleagueDiscountRepository = colleagueDiscountRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public OperationResult Define(DefineColleagueDiscount defineColleague)
         {
             var operation = new OperationResult();
-            if (_colleagueDiscountRepository.Exist(x => x.VehicleID == defineColleague.VehicleID
+            if (_unitOfWork.ColleagueDiscounts.Exist(x => x.VehicleID == defineColleague.VehicleID
             && x.DiscountRate == defineColleague.DiscountRate))
             {
                 return operation.Faild(ErrorMessage.DuplicatedRecord);
@@ -29,8 +32,8 @@ namespace DiscountManegment.App.Concrete
 
             var colleagueDiscount = new ColleagueDiscount(defineColleague.VehicleID, defineColleague.DiscountRate);
 
-            _colleagueDiscountRepository.Create(colleagueDiscount);
-            _colleagueDiscountRepository.SaveChanges();
+            _unitOfWork.ColleagueDiscounts.Create(colleagueDiscount);
+            _unitOfWork.Complete();
 
             return operation.Succedded();
         }
@@ -38,33 +41,33 @@ namespace DiscountManegment.App.Concrete
         public OperationResult Edit(EditColleagueDiscount editColleague)
         {
             var operation = new OperationResult();
-            var colleagueDiscount = _colleagueDiscountRepository.Get(editColleague.ID);
+            var colleagueDiscount = _unitOfWork.ColleagueDiscounts.Get(editColleague.ID);
 
             if (colleagueDiscount == null)
             {
                 return operation.Faild(ErrorMessage.RecordNotFound);
             }
-            if (_colleagueDiscountRepository.Exist(x => x.VehicleID == editColleague.VehicleID
+            if (_unitOfWork.ColleagueDiscounts.Exist(x => x.VehicleID == editColleague.VehicleID
             && x.DiscountRate == editColleague.DiscountRate && x.ID != editColleague.ID))
             {
                 return operation.Faild(ErrorMessage.DuplicatedRecord);
             }
 
             colleagueDiscount.Edit(editColleague.VehicleID, editColleague.DiscountRate);
-            _colleagueDiscountRepository.SaveChanges();
+            _unitOfWork.Complete();
 
             return operation.Succedded();
         }
 
         public EditColleagueDiscount GetDetails(int id)
         {
-            return _colleagueDiscountRepository.GetDetails(id);
+            return _unitOfWork.ColleagueDiscounts.GetDetails(id);
         }
 
         public OperationResult Restore(int id)
         {
             var operation = new OperationResult();
-            var colleagueDiscount = _colleagueDiscountRepository.Get(id);
+            var colleagueDiscount = _unitOfWork.ColleagueDiscounts.Get(id);
 
             if (colleagueDiscount == null)
             {
@@ -72,7 +75,7 @@ namespace DiscountManegment.App.Concrete
             }
 
             colleagueDiscount.Restore();
-            _colleagueDiscountRepository.SaveChanges();
+            _unitOfWork.Complete();
 
             return operation.Succedded();
         }
@@ -80,7 +83,7 @@ namespace DiscountManegment.App.Concrete
         public OperationResult Romove(int id)
         {
             var operation = new OperationResult();
-            var colleagueDiscount = _colleagueDiscountRepository.Get(id);
+            var colleagueDiscount = _unitOfWork.ColleagueDiscounts.Get(id);
 
             if (colleagueDiscount == null)
             {
@@ -88,27 +91,27 @@ namespace DiscountManegment.App.Concrete
             }
 
             colleagueDiscount.Remove();
-            _colleagueDiscountRepository.SaveChanges();
+            _unitOfWork.Complete();
 
             return operation.Succedded();
         }
 
         public List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel discountSearchModel)
         {
-            return _colleagueDiscountRepository.Search(discountSearchModel);
+            return _unitOfWork.ColleagueDiscounts.Search(discountSearchModel);
         }
 
         OperationResult IColleagueDiscountApplication.DeleteByID(int id)
         {
             var operation = new OperationResult();
-            var ColleagueDiscount = _colleagueDiscountRepository.DeleteByID(id);
+            var ColleagueDiscount = _unitOfWork.ColleagueDiscounts.DeleteByID(id);
 
             if (!ColleagueDiscount)
             {
                 return operation.Faild("خطا!");
             }
 
-            _colleagueDiscountRepository.SaveChanges();
+            _unitOfWork.Complete();
             return operation.Succedded();
         }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.VehicleCategoryAgg
 {
-    public class VehicleCategory : BaseEntity
+    public class VehicleCategory : BaseEntity<int>
     {
         public string Name { get; private set; }
         public string Description { get; private set; }

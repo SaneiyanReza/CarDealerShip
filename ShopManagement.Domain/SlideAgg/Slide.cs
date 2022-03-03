@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.SlideAgg
 {
-    public class Slide : BaseEntity
+    public class Slide : BaseEntity<int>
     {
         public string Picture { get; private set; }
         public string PictureTitle { get; private set; }

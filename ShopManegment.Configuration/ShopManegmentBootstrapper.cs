@@ -40,8 +40,6 @@ namespace ShopManegment.Configuration
 
             services.AddTransient<IVehicleQuery, VehicleQuery>();
 
-            services.AddScoped<UnitOfWork , UnitOfWork>();
-
             services.AddDbContext<CarDealerShipContext>(x => x.UseSqlServer(connectionString));
         }
     }

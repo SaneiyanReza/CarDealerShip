@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using ShopManegement.App.Vehicle;
@@ -11,6 +11,8 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
     //[Authorize(Roles = "1, 3")]
     public class IndexModel : PageModel
     {
+        [TempData]
+        public string Message { get; set; }
         public VehicleSearchModel SearchModel;
         public List<VehicleViewModel> Vehicles;
         public SelectList VehicleCategories;
@@ -76,8 +78,13 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
         }
         public IActionResult OnGetDeleted(int id)
         {
-            //var customerId = _customerDiscountApplication.DeleteByID()
-            _vehicleApplication.DeleteByID(id);
+            var customerId = _vehicleApplication.DeleteByID(id);
+            if (customerId.IsSuccedded)
+            {
+                Message = "خودرو با موفقیت حذف شد!";
+                return RedirectToPage("./Index");
+            }
+            //_vehicleApplication.DeleteByID(id);
             return RedirectToPage("./Index");
         }
     }

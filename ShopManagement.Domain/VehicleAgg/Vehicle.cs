@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Domain.VehicleAgg
 {
-    public class Vehicle : BaseEntity
+    public class Vehicle : BaseEntity<int>
     {
 
         public string Name { get; private set; }

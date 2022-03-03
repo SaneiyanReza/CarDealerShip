@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace _0_Framework.Domain
 {
-    public class BaseEntity
+    public class BaseEntity<T>
     {
-        public int ID { get; set; }
+        public T ID { get; set; }
         public DateTime CreationDate { get; set; }
 
         public BaseEntity()

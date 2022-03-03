@@ -68,12 +68,12 @@ namespace DiscountManegment.Infrastructure.EfCore.Repository
 
             if (!string.IsNullOrWhiteSpace(model.StartDate))
             {
-                query = query.Where(x => x.StartDateEn > model.StartDate.ToGeorgianDateTime());
+                query = query.Where(x => x.StartDateEn >= model.StartDate.ToGeorgianDateTime());
             }
 
-            if (!string.IsNullOrWhiteSpace(model.StartDate))
+            if (!string.IsNullOrWhiteSpace(model.EndDate))
             {
-                query = query.Where(x => x.EndDateEn < model.EndDate.ToGeorgianDateTime());
+                query = query.Where(x => x.EndDateEn <= model.EndDate.ToGeorgianDateTime());
             }
 
             var discounts = query.OrderByDescending(x => x.ID).ToList();

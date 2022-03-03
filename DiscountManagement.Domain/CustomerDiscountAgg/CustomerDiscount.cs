@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DiscountManagement.Domain.CustomerDiscountAgg
 {
-    public class CustomerDiscount : BaseEntity
+    public class CustomerDiscount : BaseEntity<int>
     {
         public int VehicleID { get; private set; }
         public double DiscountRate { get; private set; }
