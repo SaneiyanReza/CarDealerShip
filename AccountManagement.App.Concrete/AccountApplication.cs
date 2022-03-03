@@ -49,8 +49,12 @@ namespace AccountManagement.App.Concrete
             }
 
             var password = _passwordHasher.Hash(model.Password);
+            if (password == null)
+            {
+                return operation.Faild(ErrorMessage.WrongUserPass);
+            }
             var newAccount = new AccountManagement.Domain.AccountAgg.Account(model.FullName, model.UserName,
-                password, model.RoleID, model.Mobile, model.ProfilePhoto);
+                password, model.Mobile, model.ProfilePhoto, model.RoleID);
 
             _accountRepository.Create(newAccount);
             _accountRepository.SaveChanges();
@@ -83,6 +87,11 @@ namespace AccountManagement.App.Concrete
         {
             return _accountRepository.GetDetails(id);
         }
+
+        //public string GetPhoto(string photo)
+        //{
+        //    return _accountRepository.GetPhoto(photo);
+        //}
 
         public OperationResult Login(Login login)
         {

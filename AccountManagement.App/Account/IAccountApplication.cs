@@ -16,5 +16,6 @@ namespace AccountManagement.App.Account
         EditAccount GetDetails(int id);
         List<AccountViewModel> Search(AccountSearchModel model);
         void Logout();
+        //string GetPhoto(string photo);
     }
 }

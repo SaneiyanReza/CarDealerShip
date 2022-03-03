@@ -4,8 +4,10 @@
     {
         public int AccountID { get; set; }
         public int RoleID { get; set; }
+        public string Role { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }
+        public string Picture { get; set; }
         public AuthViewModel(int accountID, int roleID, string userName, string fullName)
         {
             AccountID = accountID;
@@ -14,5 +16,8 @@
             FullName = fullName;
         }
 
+        public AuthViewModel()
+        {
+        }
     }
 }

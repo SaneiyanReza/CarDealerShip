@@ -18,14 +18,14 @@ namespace AccountManagement.Domain.AccountAgg
         public string ProfilePhoto { get; private set; }
         public Role Role { get; private set; }
         public Account(string fullName, string userName, string password,
-            int roleID, string mobile, string profilePhoto)
+             string mobile, string profilePhoto , int roleID = 2)
         {
             FullName = fullName;
             UserName = userName;
             Password = password;
-            RoleID = roleID;
             Mobile = mobile;
             ProfilePhoto = profilePhoto;
+            RoleID = roleID;
         }
 
         public void Edit(string fullName, string userName,

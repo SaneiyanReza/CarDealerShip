@@ -5,10 +5,12 @@ using ShopManegement.App.Vehicle;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManegement.App.VehicleCategories;
 using DiscountManagement.App.CustomerDiscount;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastucture;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
 {
-    //[Authorize(Roles = "1, 3")]
+    [Authorize(Roles = RolesAccess.Admin)]
     public class IndexModel : PageModel
     {
         [TempData]

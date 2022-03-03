@@ -1,4 +1,5 @@
 using _0_Framework.App;
+using _0_Framework.Infrastucture;
 using AccountManagement.Configuration;
 using DiscountManagement.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -53,7 +54,18 @@ namespace ServiceHost
                     o.AccessDeniedPath = new PathString("/AccessDenied");
                 });
 
-            services.AddRazorPages();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminArea", builder => builder.RequireRole(new List<string> { RolesAccess.Admin, RolesAccess.Content }));
+
+                options.AddPolicy("Account", builder => builder.RequireRole(new List<string> { RolesAccess.Admin }));
+            });
+
+            services.AddRazorPages().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+                options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

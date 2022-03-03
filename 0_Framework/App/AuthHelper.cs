@@ -19,20 +19,21 @@ namespace _0_Framework.App
             _contextAccessor = contextAccessor;
         }
 
-        //public AuthViewModel CurrentAccountInfo()
-        //{
-        //    var result = new AuthViewModel();
-        //    if (!IsAuthenticated())
-        //        return result;
+        public AuthViewModel CurrentAccountInfo()
+        {
+            var result = new AuthViewModel();
+            if (!IsAuthenticated())
+                return result;
 
-        //    var claims = _contextAccessor.HttpContext.User.Claims.ToList();
-        //    result.Id = long.Parse(claims.FirstOrDefault(x => x.Type == "AccountId").Value);
-        //    result.Username = claims.FirstOrDefault(x => x.Type == "Username").Value;
-        //    result.RoleId = long.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
-        //    result.Fullname = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
-        //    result.Role = Roles.GetRoleBy(result.RoleId);
-        //    return result;
-        //}
+            var claims = _contextAccessor.HttpContext.User.Claims.ToList();
+            result.AccountID = int.Parse(claims.FirstOrDefault(x => x.Type == "AccountID").Value);
+            result.UserName = claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            result.RoleID = int.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
+            result.FullName = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+            result.Role = RolesAccess.GetRoleByID(result.RoleID);
+            //result.Picture = Concrete.AccountApplication.FirstOrDefault(x => x.Type == "ProfilePhoto")?.Value;
+            return result;
+        }
 
         public List<int> GetPermissions()
         {
@@ -80,10 +81,10 @@ namespace _0_Framework.App
             //var permissions = JsonConvert.SerializeObject(account.Permissions);
             var claims = new List<Claim>
             {
-                new Claim("AccountId", account.AccountID.ToString()),
+                new Claim("AccountID", account.AccountID.ToString()),
                 new Claim(ClaimTypes.Name, account.FullName),
                 new Claim(ClaimTypes.Role, account.RoleID.ToString()),
-                new Claim("Username", account.UserName), // Or Use ClaimTypes.NameIdentifier
+                new Claim(ClaimTypes.NameIdentifier, account.UserName),
                 //new Claim("permissions", permissions),
                 //new Claim("Mobile", account.FullName)
             };

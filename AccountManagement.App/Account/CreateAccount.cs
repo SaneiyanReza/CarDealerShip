@@ -20,8 +20,6 @@ namespace AccountManagement.App.Account
         [Required(ErrorMessage = Validations.IsRequired)]
         public string Password { get; set; }
 
-        [Range(1 , int.MaxValue , ErrorMessage = Validations.CorrectValues)]
-        [Required(ErrorMessage = Validations.IsRequired)]
         public int RoleID { get; set; }
 
         [Required(ErrorMessage = Validations.IsRequired)]

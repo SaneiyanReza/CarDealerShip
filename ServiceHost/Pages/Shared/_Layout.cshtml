@@ -35,10 +35,10 @@
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="index.html">HOME</a>
+                                        <a asp-page="./Index">صفحه اصلی</a>
                                     </li>
 
-                                    <li class="menu-item-has-children">
+                                    @*<li class="menu-item-has-children">
                                         <a href="#">PAGES</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item-has-children">
@@ -81,9 +81,9 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>*@
 
-                                    <li class="menu-item-has-children">
+                                    @*<li class="menu-item-has-children">
                                         <a href="blog-left-sidebar.html">BLOG</a>
                                         <ul class="sub-menu">
                                             <li>
@@ -111,12 +111,12 @@
                                                 <a href="blog-post-video-format.html">Blog Post Video Format</a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>*@
 
                                     @if (!AuthHelper.IsAuthenticated())
                                     {
                                         <li>
-                                            <a asp-page="/Account">ورود</a>
+                                            <a asp-page="/Account">ورود/ثبت‌‌‌نام</a>
                                         </li>
                                     }
                                     else

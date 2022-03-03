@@ -1,3 +1,5 @@
+using _0_Framework.Infrastucture;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManegement.App.VehicleCategories;
@@ -5,7 +7,6 @@ using System.Collections.Generic;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.VehicleCategories
 {
-    //[Authorize(Roles = "1, 3")]
     public class IndexModel : PageModel
     {
         public SearchVehicleCategory SearchModel;

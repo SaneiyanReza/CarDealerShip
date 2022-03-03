@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManegement.App.VehicleCategories;
 using ShopManegement.App.VehiclePicture;
 using ShopManegement.App.Slide;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastucture;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Slides
 {
-    //[Authorize(Roles = "1, 3")]
     public class IndexModel : PageModel
     {
         public List<SlideViewModel> Slides;

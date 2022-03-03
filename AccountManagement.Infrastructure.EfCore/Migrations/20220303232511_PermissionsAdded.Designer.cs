@@ -4,14 +4,16 @@ using AccountManagement.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AccountManagement.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(AccountContext))]
-    partial class AccountContextModelSnapshot : ModelSnapshot
+    [Migration("20220303232511_PermissionsAdded")]
+    partial class PermissionsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,8 +105,8 @@ namespace AccountManagement.Infrastructure.EfCore.Migrations
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                            b1.Property<byte>("Code")
-                                .HasColumnType("tinyint");
+                            b1.Property<int>("Code")
+                                .HasColumnType("int");
 
                             b1.Property<string>("Name")
                                 .HasColumnType("nvarchar(max)");

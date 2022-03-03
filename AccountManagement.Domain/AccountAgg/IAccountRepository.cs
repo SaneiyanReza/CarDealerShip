@@ -13,5 +13,6 @@ namespace AccountManagement.Domain.AccountAgg
         EditAccount GetDetails(int id);
         List<AccountViewModel> Search(AccountSearchModel model);
         Account GetByUserName(string userName);
+        //string GetPhoto(string photo);
     }
 }
