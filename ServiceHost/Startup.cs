@@ -61,7 +61,9 @@ namespace ServiceHost
                 options.AddPolicy("Account", builder => builder.RequireRole(new List<string> { RolesAccess.Admin }));
             });
 
-            services.AddRazorPages().AddRazorPagesOptions(options =>
+            services.AddRazorPages()
+                .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
+                .AddRazorPagesOptions(options =>
             {
                 options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
                 options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");

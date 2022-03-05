@@ -31,18 +31,17 @@ namespace _0_Framework.App
             result.RoleID = int.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
             result.FullName = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
             result.Role = RolesAccess.GetRoleByID(result.RoleID);
-            //result.Picture = Concrete.AccountApplication.FirstOrDefault(x => x.Type == "ProfilePhoto")?.Value;
+            result.ProfilePhoto = claims.FirstOrDefault(x => x.Type == "ProfilePhoto")?.Value;
             return result;
         }
 
-        public List<int> GetPermissions()
+        public List<byte> GetPermissions()
         {
             if (!IsAuthenticated())
-                return new List<int>();
+                return new List<byte>();
 
-            var permissions = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "permissions")
-                ?.Value;
-            return JsonConvert.DeserializeObject<List<int>>(permissions);
+            var permissions = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "permissions")?.Value;
+            return JsonConvert.DeserializeObject<List<byte>>(permissions);
         }
 
         public long CurrentAccountId()
@@ -78,14 +77,14 @@ namespace _0_Framework.App
 
         public void Signin(AuthViewModel account)
         {
-            //var permissions = JsonConvert.SerializeObject(account.Permissions);
+            var permissions = JsonConvert.SerializeObject(account.Permissions);
             var claims = new List<Claim>
             {
                 new Claim("AccountID", account.AccountID.ToString()),
                 new Claim(ClaimTypes.Name, account.FullName),
                 new Claim(ClaimTypes.Role, account.RoleID.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, account.UserName),
-                //new Claim("permissions", permissions),
+                new Claim("permissions", permissions),
                 //new Claim("Mobile", account.FullName)
             };
 
@@ -105,5 +104,10 @@ namespace _0_Framework.App
         {
             _contextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
+
+        //public string CurrentAccountProfilePhoto()
+        //{
+        //    return _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "ProfilePhoto")?.Value;
+        //}
     }
 }

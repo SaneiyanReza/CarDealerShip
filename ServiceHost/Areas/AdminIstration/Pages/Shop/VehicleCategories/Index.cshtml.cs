@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManegement.App.VehicleCategories;
+using ShopManegment.Configuration.Permissions;
 using System.Collections.Generic;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.VehicleCategories
@@ -19,28 +20,33 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehicleCategories
             _vehicleCategoryApplication = productCategoryApplication;
         }
 
+        [NeedsPermission(ShopPermissions.ListVehicleCategories)]
         public void OnGet(SearchVehicleCategory searchModel)
         {
             VehicleCategories = _vehicleCategoryApplication.Search(searchModel);
         }
 
+        [NeedsPermission(ShopPermissions.CreateVehicleCategorie)]
         public IActionResult OnGetCreate()
         {
             return Partial("./Create", new CreateVehicleCategory());
         }
 
+        [NeedsPermission(ShopPermissions.CreateVehicleCategorie)]
         public JsonResult OnPostCreate(CreateVehicleCategory command)
         {
             var result = _vehicleCategoryApplication.Create(command);
             return new JsonResult(result);
         }
 
+        [NeedsPermission(ShopPermissions.EditVehicleCategorie)]
         public IActionResult OnGetEdit(int id)
         {
             var vehicleCategory = _vehicleCategoryApplication.GetDetail(id);
             return Partial("Edit", vehicleCategory);
         }
 
+        [NeedsPermission(ShopPermissions.EditVehicleCategorie)]
         public JsonResult OnPostEdit(EditVehicleCategory command)
         {
             if (ModelState.IsValid)

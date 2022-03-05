@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Areas\AdminIstration\Pages\Accounts\Role\Create.cshtml" />
+    <None Include="Areas\AdminIstration\Pages\Accounts\Role\Edit.cshtml" />
+    <None Include="Areas\AdminIstration\Pages\Accounts\Role\Index.cshtml" />
     <None Include="Pages\Error.cshtml" />
     <None Include="Pages\Index.cshtml" />
     <None Include="Pages\Privacy.cshtml" />

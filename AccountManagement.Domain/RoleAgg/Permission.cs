@@ -7,15 +7,14 @@
         public string Name { get; private set; }
         public int RoleID { get; private set; }
         public Role Role { get; private set; }
+        public Permission(byte code)
+        {
+            Code = code;
+        }
         public Permission(byte code, string name)
         {
             Code = code;
             Name = name;
-        }
-
-        public Permission(byte code)
-        {
-            Code = code;
         }
     }
 }

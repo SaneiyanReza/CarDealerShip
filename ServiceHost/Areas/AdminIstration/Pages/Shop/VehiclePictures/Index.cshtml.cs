@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using ShopManegement.App.Vehicle;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManegement.App.VehiclePicture;
+using _0_Framework.Infrastucture;
+using ShopManegment.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
 {
@@ -26,12 +28,14 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
             _vehiclePictureApplication = vehiclePictureApplication;
         }
 
+        [NeedsPermission(ShopPermissions.ListVehiclePictures)]
         public void OnGet(VehiclePictureSearchModel searchModel)
         {
             Vehicles = new SelectList(_vehicleApplication.GetVehicles(), "ID", "Specifications");
             VehiclePictures = _vehiclePictureApplication.Search(searchModel);
         }
 
+        [NeedsPermission(ShopPermissions.CreateVehiclePicture)]
         public IActionResult OnGetCreate()
         {
             var command = new CreateVehiclePicture
@@ -42,12 +46,14 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
             return Partial("./Create", command);
         }
 
+        [NeedsPermission(ShopPermissions.CreateVehiclePicture)]
         public JsonResult OnPostCreate(CreateVehiclePicture command)
         {
             var result = _vehiclePictureApplication.Create(command);
             return new JsonResult(result);
         }
 
+        [NeedsPermission(ShopPermissions.EditVehiclePicture)]
         public IActionResult OnGetEdit(int id)
         {
             var vehiclePicture = _vehiclePictureApplication.GetDetails(id);
@@ -55,6 +61,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.VehiclePictures
             return Partial("Edit", vehiclePicture);
         }
 
+        [NeedsPermission(ShopPermissions.EditVehiclePicture)]
         public JsonResult OnPostEdit(EditVehiclePicture command)
         {
             if (ModelState.IsValid)

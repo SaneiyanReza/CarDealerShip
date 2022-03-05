@@ -33,11 +33,6 @@ namespace AccountManagement.Infrastructure.EfCore.Repository
             }).FirstOrDefault(x => x.ID == id);
         }
 
-        //public Account GetPhoto(string photo)
-        //{
-        //    return _accountContext.Accounts.FirstOrDefault(x => x.ProfilePhoto == photo);
-        //}
-
         public List<AccountViewModel> Search(AccountSearchModel model)
         {
             var query = _accountContext.Accounts.Include(x => x.Role).Select(x => new AccountViewModel

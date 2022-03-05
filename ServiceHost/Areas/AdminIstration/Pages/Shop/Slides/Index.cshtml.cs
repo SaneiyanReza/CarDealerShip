@@ -8,6 +8,7 @@ using ShopManegement.App.VehiclePicture;
 using ShopManegement.App.Slide;
 using Microsoft.AspNetCore.Authorization;
 using _0_Framework.Infrastucture;
+using ShopManegment.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Slides
 {
@@ -22,29 +23,34 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Slides
             _slideApplication = slideApplication;
         }
 
+        [NeedsPermission(ShopPermissions.ListSlides)]
         public void OnGet()
         {
             Slides = _slideApplication.GetList();
         }
 
+        [NeedsPermission(ShopPermissions.CreateSlide)]
         public IActionResult OnGetCreate()
         {
             var command = new CreateSlide();
             return Partial("./Create", command);
         }
 
+        [NeedsPermission(ShopPermissions.CreateSlide)]
         public JsonResult OnPostCreate(CreateSlide command)
         {
             var result = _slideApplication.Create(command);
             return new JsonResult(result);
         }
 
+        [NeedsPermission(ShopPermissions.EditSlide)]
         public IActionResult OnGetEdit(int id)
         {
             var slide = _slideApplication.GetDetails(id);
             return Partial("Edit", slide);
         }
 
+        [NeedsPermission(ShopPermissions.EditSlide)]
         public JsonResult OnPostEdit(EditSlide command)
         {
             if (ModelState.IsValid)

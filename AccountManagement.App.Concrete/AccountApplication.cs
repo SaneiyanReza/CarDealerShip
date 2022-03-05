@@ -1,7 +1,9 @@
 ﻿using _0_Framework.App;
 using AccountManagement.App.Account;
+using AccountManagement.Domain.RoleAgg;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AccountManagement.App.Concrete
 {
@@ -10,12 +12,14 @@ namespace AccountManagement.App.Concrete
         private readonly AccountManagement.Domain.AccountAgg.IAccountRepository _accountRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthHelper _authHelper;
+        private readonly IRoleRepository _roleRepository;
         public AccountApplication(AccountManagement.Domain.AccountAgg.IAccountRepository accountRepository , 
-            IPasswordHasher passwordHasher , IAuthHelper authHelper)
+            IPasswordHasher passwordHasher , IAuthHelper authHelper , IRoleRepository roleRepository)
         {
             _accountRepository = accountRepository;
             _passwordHasher = passwordHasher;
             _authHelper = authHelper;
+            _roleRepository = roleRepository;
         }
 
         public OperationResult ChangePassword(ChangePassword model)
@@ -110,7 +114,12 @@ namespace AccountManagement.App.Concrete
                 return operation.Faild(ErrorMessage.WrongUserPass);
             }
 
-            var authViewModel = new AuthViewModel(account.ID, account.RoleID, account.UserName, account.FullName);
+            var permissions = _roleRepository.Get(account.RoleID)
+                 .Permissions
+                 .Select(x => x.Code)
+                 .ToList();
+
+            var authViewModel = new AuthViewModel(account.ID, account.RoleID, account.UserName, account.FullName , account.ProfilePhoto , permissions);
             _authHelper.Signin(authViewModel);
 
             return operation.Succedded();

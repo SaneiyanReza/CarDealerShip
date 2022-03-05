@@ -25,7 +25,7 @@ namespace AccountManagement.App.Concrete
                 return operation.Faild(ErrorMessage.DuplicatedRecord);
             }
 
-            var role = new AccountManagement.Domain.RoleAgg.Role(createRole.Name , new List<Permission>());
+            var role = new Domain.RoleAgg.Role(createRole.Name , new List<Permission>());
 
             _roleRepository.Create(role);
             _roleRepository.SaveChanges();
@@ -46,7 +46,10 @@ namespace AccountManagement.App.Concrete
                 return operation.Faild(ErrorMessage.DuplicatedRecord);
             }
 
-            role.Edit(editRole.Name, new List<Permission>());
+            var permissions = new List<Permission>();
+            editRole.Permissions?.ForEach(code => permissions.Add(new Permission(code)));
+
+            role.Edit(editRole.Name, permissions);
             _roleRepository.SaveChanges();
             return operation.Succedded();
         }

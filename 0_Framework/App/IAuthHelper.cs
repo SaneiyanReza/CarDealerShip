@@ -12,6 +12,8 @@ namespace _0_Framework.App
         void SignOut();
         bool IsAuthenticated();
         string CurrentAccountRole();
+        //string CurrentAccountProfilePhoto();
         AuthViewModel CurrentAccountInfo();
+        List<byte> GetPermissions();
     }
 }

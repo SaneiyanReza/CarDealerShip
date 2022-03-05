@@ -6,7 +6,7 @@
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
             <div class="pull-left">
-                <img src="@currentAccount.Picture" alt="" class="thumb-md img-circle">
+                <img src="@currentAccount.ProfilePhoto" alt="" class="thumb-md img-circle"/>
             </div>
             <div class="user-info">
                 <div class="dropdown">
@@ -33,10 +33,7 @@
                     <ul class="list-unstyled">
                         <li><a asp-page="/Shop/Slides/Index">اسلایدر</a></li>
                         <li><a asp-page="/Shop/VehicleCategories/Index">گروه خودروها</a></li>
-                        @if (AuthHelper.CurrentAccountRole() == "1")
-                        {
-                            <li><a asp-page="/Shop/Vehicles/Index">خودروها</a></li>
-                        }
+                        <li><a asp-page="/Shop/Vehicles/Index">خودروها</a></li>
                         <li><a asp-page="/Shop/VehiclePictures/Index">عکس خودروها</a></li>
                     </ul>
                 </li>

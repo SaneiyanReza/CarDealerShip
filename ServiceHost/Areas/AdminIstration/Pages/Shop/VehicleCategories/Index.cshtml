@@ -1,4 +1,5 @@
 ﻿@page
+@using ShopManegment.Configuration.Permissions
 @model ServiceHost.Areas.Administration.Pages.Shop.VehicleCategories.IndexModel
 @{
 }
@@ -12,12 +13,12 @@
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد گروه خودرو جدید</a>
+            <a Permission="@ShopPermissions.CreateVehicleCategorie" class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد گروه خودرو جدید</a>
         </p>
     </div>
 </div>
 
-<div class="row">
+<div class="row" Permission="@ShopPermissions.SearchVehicleCategorie">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -37,7 +38,7 @@
     </div>
 </div>
 
-<div class="row" id="ProductCategoriesDiv">
+<div class="row" Permission="@ShopPermissions.ListVehicleCategories">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -78,7 +79,7 @@
                                         </td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
+                                            <a Permission="@ShopPermissions.EditVehicleCategorie" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.ID})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                             @if (item.IsRemoved)

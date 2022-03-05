@@ -1,4 +1,5 @@
-﻿using _01_CarDealerShipQuery.Contracts.Slide;
+﻿using _0_Framework.Infrastucture;
+using _01_CarDealerShipQuery.Contracts.Slide;
 using _01_CarDealerShipQuery.Contracts.Vehicle;
 using _01_CarDealerShipQuery.Contracts.VehicleCategory;
 using _01_CarDealerShipQuery.Query;
@@ -13,6 +14,7 @@ using ShopManegement.App.Vehicle;
 using ShopManegement.App.VehicleCategories;
 using ShopManegement.App.VehiclePicture;
 using ShopManegment.App.Concrete;
+using ShopManegment.Configuration.Permissions;
 using ShopManegment.Infrastructure.EfCore;
 using ShopManegment.Infrastructure.EfCore.Repository;
 
@@ -39,6 +41,8 @@ namespace ShopManegment.Configuration
             services.AddTransient<IVehicleCategoryQuery, VehicleCategoryQuery>();
 
             services.AddTransient<IVehicleQuery, VehicleQuery>();
+
+            services.AddTransient<IPermissonsExposer, ShopPermissonsExposer>();
 
             services.AddDbContext<CarDealerShipContext>(x => x.UseSqlServer(connectionString));
         }

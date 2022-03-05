@@ -7,10 +7,11 @@ using ShopManegement.App.VehicleCategories;
 using DiscountManagement.App.CustomerDiscount;
 using Microsoft.AspNetCore.Authorization;
 using _0_Framework.Infrastucture;
+using ShopManegment.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
 {
-    [Authorize(Roles = RolesAccess.Admin)]
+    //[Authorize(Roles = RolesAccess.Admin)]
     public class IndexModel : PageModel
     {
         [TempData]
@@ -28,12 +29,14 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
             _vehicleCategoryApplication = vehicleCategoryApplication;
         }
 
+        [NeedsPermission(ShopPermissions.ListVehicles)]
         public void OnGet(VehicleSearchModel searchModel)
         {
             VehicleCategories = new SelectList(_vehicleCategoryApplication.GetVehicleCategories(), "ID", "Name");
             Vehicles = _vehicleApplication.Search(searchModel);
         }
 
+        [NeedsPermission(ShopPermissions.CraeteVehicle)]
         public IActionResult OnGetCreate()
         {
             var command = new CreateVehicle
@@ -44,12 +47,14 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
             return Partial("./Create", command);
         }
 
+        [NeedsPermission(ShopPermissions.CraeteVehicle)]
         public JsonResult OnPostCreate(CreateVehicle command)
         {
             var result = _vehicleApplication.Create(command);
             return new JsonResult(result);
         }
 
+        [NeedsPermission(ShopPermissions.EditVehicle)]
         public IActionResult OnGetEdit(int id)
         {
             var vehicle = _vehicleApplication.GetDetails(id);
@@ -57,6 +62,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
             return Partial("Edit", vehicle);
         }
 
+        [NeedsPermission(ShopPermissions.EditVehicle)]
         public JsonResult OnPostEdit(EditVehicle command)
         {
             if (ModelState.IsValid)
@@ -78,6 +84,8 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
             _vehicleApplication.IsNotAvailable(id);
             return RedirectToPage("./Index");
         }
+
+        [NeedsPermission(ShopPermissions.DeleteVehicle)]
         public IActionResult OnGetDeleted(int id)
         {
             var customerId = _vehicleApplication.DeleteByID(id);
