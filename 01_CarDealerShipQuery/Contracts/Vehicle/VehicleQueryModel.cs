@@ -14,11 +14,16 @@ namespace _01_CarDealerShipQuery.Contracts.Vehicle
         public string PictureTitle { get; set; }
         public string Slug { get; set; }
         public string Specifications { get; set; }
+        public string VehicleName { get; set; }
+        public string VehicleModel { get; set; }
         public string Price { get; set; }
         public string PriceWithDiscount { get; set; }
         public double DiscountRate { get; set; }
         public string Category { get; set; }
+        public string CategorySlug { get; set; }
         public bool HasDiscount { get; set; }
+        public string DiscountExpire { get; set; }
+        public string ShortDescription { get; set; }
 
     }
 }

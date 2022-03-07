@@ -31,7 +31,7 @@ namespace _01_CarDealerShipQuery.Query
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Slug = x.Slug
-            }).ToList();
+            }).AsNoTracking().ToList();
         }
 
         public List<VehicleCategoryQueryModel> GetVehicleCategoriesWithVehicles()
@@ -45,7 +45,7 @@ namespace _01_CarDealerShipQuery.Query
                     ID = x.ID,
                     Name = x.Name,
                     Vehicles = MapVehicles(x.Vehicles)
-                }).ToList();
+                }).AsNoTracking().ToList();
 
             foreach (var category in categories)
             {
@@ -95,7 +95,7 @@ namespace _01_CarDealerShipQuery.Query
         {
             var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();
             var discounts = _discountcontext.CustomerDiscounts.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
-                .Select(x => new { x.DiscountRate, x.VehicleID }).ToList();
+                .Select(x => new { x.DiscountRate, x.VehicleID , x.EndDate}).ToList();
             var category = _context.VehicleCategories.Include(x => x.Vehicles)
                 .ThenInclude(x => x.VehicleCategory).Select(x => new VehicleCategoryQueryModel
                 {
@@ -120,6 +120,7 @@ namespace _01_CarDealerShipQuery.Query
                     {
                         double discountRate = discount.DiscountRate;
                         vehicle.DiscountRate = discountRate;
+                        vehicle.DiscountExpire = discount.EndDate.ToDiscountFormat();
                         vehicle.HasDiscount = discountRate > 0;
                         var discountAmount = Math.Round((price * discountRate) / 100);
                         vehicle.PriceWithDiscount = (price - discountAmount).ToMoney();

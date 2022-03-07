@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ShopManagement.Domain.SlideAgg;
+using Microsoft.EntityFrameworkCore;
 
 namespace _01_CarDealerShipQuery.Query
 {
@@ -30,7 +31,7 @@ namespace _01_CarDealerShipQuery.Query
                 PictureTitle = x.PictureTitle,
                 Text = x.Text,
                 Title = x.Title
-            }).ToList();
+            }).AsNoTracking().ToList();
             //return new SlideQueryModel
             //{
             //    BtnText = slide.BtnText,

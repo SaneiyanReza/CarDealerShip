@@ -17,7 +17,7 @@ namespace _0_Framework.Infrastucture
             return id switch
             {
                 1 => "مدیر سیستم",
-                3 => "معاون سیستم",
+                3 => "دستیار مدیر سیستم",
                 _ => null,
             };
         }

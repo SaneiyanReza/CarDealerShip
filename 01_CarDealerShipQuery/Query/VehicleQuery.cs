@@ -35,8 +35,9 @@ namespace _01_CarDealerShipQuery.Query
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Slug = x.Slug,
-                Price = x.UnitPrice.ToMoney()
-            }).ToList();
+                Price = x.UnitPrice.ToMoney(),
+                ShortDescription = x.ShortDescription
+            }).AsNoTracking().ToList();
 
             foreach (var vehicle in vehicleQueryModels)
             {
@@ -56,6 +57,56 @@ namespace _01_CarDealerShipQuery.Query
                 }
             }
             return vehicleQueryModels;
+        }
+
+        public List<VehicleQueryModel> Search(string value)
+        {
+            var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();
+            var discounts = _discountcontext.CustomerDiscounts.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
+                .Select(x => new { x.DiscountRate, x.VehicleID, x.EndDate }).ToList();
+
+            var query = _context.Vehicles.Include(x => x.VehicleCategory)
+                .Select(vehicle => new VehicleQueryModel
+                {
+                    ID = vehicle.ID,
+                    Category = vehicle.VehicleCategory.Name,
+                    VehicleName = vehicle.Name.ToLower(),
+                    VehicleModel = vehicle.Model.ToLower(),
+                    Picture = vehicle.Picture,
+                    PictureAlt = vehicle.PictureAlt,
+                    PictureTitle = vehicle.PictureTitle,
+                    Slug = vehicle.Slug,
+                    Price = vehicle.UnitPrice.ToMoney(),
+                    ShortDescription = vehicle.ShortDescription.ToLower(),
+                    CategorySlug = vehicle.VehicleCategory.Slug,
+                }).AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                query = query.Where(x => x.VehicleName.Contains(value.ToLower()) || x.VehicleModel.Contains(value.ToLower()) || x.ShortDescription.Contains(value.ToLower()));
+            }
+
+            var vehiclesModel = query.OrderByDescending(x => x.ID).ToList();
+
+            foreach (var vehicle in vehiclesModel)
+            {
+                var vehicleModel = vehicles.FirstOrDefault(x => x.ID == vehicle.ID);
+                if (vehicleModel != null)
+                {
+                    var price = vehicleModel.UnitPrice;
+                    var discount = discounts.FirstOrDefault(x => x.VehicleID == vehicle.ID);
+                    if (discount != null)
+                    {
+                        double discountRate = discount.DiscountRate;
+                        vehicle.DiscountRate = discountRate;
+                        vehicle.DiscountExpire = discount.EndDate.ToDiscountFormat();
+                        vehicle.HasDiscount = discountRate > 0;
+                        var discountAmount = Math.Round((price * discountRate) / 100);
+                        vehicle.PriceWithDiscount = (price - discountAmount).ToMoney();
+                    }
+                }
+            }
+            return vehiclesModel;
         }
     }
 }
