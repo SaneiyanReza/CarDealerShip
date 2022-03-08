@@ -86,9 +86,9 @@
                                         </td>
                                         <td>@item.Name</td>
                                         <td>@item.Model</td>
-                                        <td>@item.CarFunction</td>
+                                        <td>@item.CarFunction.ToString("N0")km</td>
                                         <td>@item.CategoryName</td>
-                                        <td>@item.UnitPrice</td>
+                                        <td>@item.UnitPrice.ToString("N0")</td>
                                         <td class="text-center">
                                             @if (item.IsAvailable)
                                             {

@@ -44,7 +44,8 @@ namespace _01_CarDealerShipQuery.Query
                 {
                     ID = x.ID,
                     Name = x.Name,
-                    Vehicles = MapVehicles(x.Vehicles)
+                    Vehicles = MapVehicles(x.Vehicles),
+                    Slug = x.Slug
                 }).AsNoTracking().ToList();
 
             foreach (var category in categories)

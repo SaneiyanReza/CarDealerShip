@@ -24,6 +24,7 @@ namespace _01_CarDealerShipQuery.Contracts.Vehicle
         public bool HasDiscount { get; set; }
         public string DiscountExpire { get; set; }
         public string ShortDescription { get; set; }
+        public DateTime CreationDate { get; set; }
 
     }
 }

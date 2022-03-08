@@ -170,6 +170,10 @@
                                                 {
                                                     <span class="sale">-@vehicle.DiscountRate%</span>
                                                 }
+                                                @if (vehicle.CreationDate > DateTime.Now.AddDays(-41))
+                                                {
+                                                    <span class="new">جدید</span>
+                                                }
                                             </div>
                                             <a asp-page="/Vehicle" asp-route-id="@vehicle.Slug">
                                                 <img src="@vehicle.Picture" class="img-fluid" alt="@vehicle.PictureAlt" title="@vehicle.PictureTitle">
@@ -177,7 +181,9 @@
                                         </div>
                                         <div class="single-grid-product__content">
                                             <div class="single-grid-product__category-rating">
-                                                <span class="category"><a asp-page="/VehicleCategory" asp-route-id="@vehicle.Slug">@vehicle.Category</a></span>
+                                                <span class="category">
+                                                    <a asp-page="/VehicleCategory" asp-route-id="@vehicle.CategorySlug">@vehicle.Category</a>
+                                                </span>
                                                 <span class="rating">
                                                     <i class="ion-android-star active"></i>
                                                     <i class="ion-android-star active"></i>

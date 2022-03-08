@@ -36,8 +36,10 @@ namespace _01_CarDealerShipQuery.Query
                 PictureTitle = x.PictureTitle,
                 Slug = x.Slug,
                 Price = x.UnitPrice.ToMoney(),
-                ShortDescription = x.ShortDescription
-            }).AsNoTracking().ToList();
+                ShortDescription = x.ShortDescription,
+                CategorySlug = x.VehicleCategory.Slug,
+                CreationDate = x.CreationDate
+            }).AsNoTracking().OrderByDescending(x => x.ID).Take(20).ToList();
 
             foreach (var vehicle in vehicleQueryModels)
             {
