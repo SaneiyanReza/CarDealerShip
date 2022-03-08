@@ -63,6 +63,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.App.Concr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Configuration", "AccountManagement.Configuration\AccountManagement.Configuration.csproj", "{EE359ACE-C6E1-42FC-8BA9-68D72FAEA178}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Presentation", "SM.Presentation", "{D0473A0E-568C-4D21-AD3C-B3CE7935EF77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Presentation.Api", "ShopManagement.Presentation.Api\ShopManagement.Presentation.Api.csproj", "{7363CC7C-71E8-4D23-9E66-B2264BA11652}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +145,10 @@ Global
 		{EE359ACE-C6E1-42FC-8BA9-68D72FAEA178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE359ACE-C6E1-42FC-8BA9-68D72FAEA178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE359ACE-C6E1-42FC-8BA9-68D72FAEA178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7363CC7C-71E8-4D23-9E66-B2264BA11652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7363CC7C-71E8-4D23-9E66-B2264BA11652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7363CC7C-71E8-4D23-9E66-B2264BA11652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7363CC7C-71E8-4D23-9E66-B2264BA11652}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +178,8 @@ Global
 		{6EA216D0-B76C-432A-96CD-F23AF8A11BB2} = {F1207B77-B33B-4CF9-BCDB-0C9B8BC9EB5F}
 		{C8F53EB8-22D1-4FF4-BDE3-85F9991A5F00} = {7C178A59-FD66-4286-8A65-B76947B64F45}
 		{EE359ACE-C6E1-42FC-8BA9-68D72FAEA178} = {F1207B77-B33B-4CF9-BCDB-0C9B8BC9EB5F}
+		{D0473A0E-568C-4D21-AD3C-B3CE7935EF77} = {395CF597-4CA9-4940-8F1F-FB6811846455}
+		{7363CC7C-71E8-4D23-9E66-B2264BA11652} = {D0473A0E-568C-4D21-AD3C-B3CE7935EF77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC7A9C3F-F8D1-45A8-8480-D6896EBB7B94}
