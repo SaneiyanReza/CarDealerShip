@@ -58,6 +58,9 @@ namespace ServiceHost
                 options.AddPolicy("Account", builder => builder.RequireRole(new List<string> { RolesAccess.Admin }));
             });
 
+            services.AddCors(options => options.AddPolicy("MyPolicy", builder => 
+            builder.WithOrigins("https://localhost:5002").AllowAnyMethod().AllowAnyMethod()));
+
             services.AddRazorPages()
                 .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
                 .AddRazorPagesOptions(options =>
@@ -65,7 +68,8 @@ namespace ServiceHost
                 options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
                 options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
             })
-                .AddApplicationPart(typeof(VehicleController).Assembly);
+                .AddApplicationPart(typeof(VehicleController).Assembly)
+                .AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +96,8 @@ namespace ServiceHost
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("MyPolicy");
 
             app.UseEndpoints(endpoints =>
             {

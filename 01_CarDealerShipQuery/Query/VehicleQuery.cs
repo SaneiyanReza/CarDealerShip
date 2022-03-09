@@ -21,6 +21,26 @@ namespace _01_CarDealerShipQuery.Query
             _discountcontext = discountContext;
         }
 
+        //public DiscountStatus CheckDiscount(Vehicle command)
+        //{
+        //    var vehicle = _context.Vehicles.FirstOrDefault(x => x.ID == command.VehicleID);
+        //    var discount = _discountcontext.CustomerDiscounts.FirstOrDefault(x => x.VehicleID == command.VehicleID);
+        //    if (vehicle == null || !vehicle.IsAvailable || discount == null)
+        //    {
+        //        return new DiscountStatus()
+        //        {
+        //            IsDiscount = false,
+        //            Specification = vehicle?.Specifications
+        //        };
+        //    }
+
+        //    return new DiscountStatus()
+        //    {
+        //        DiscountRate = discount.DiscountRate,
+        //        Specification = vehicle?.Specifications
+        //    };
+        //}
+
         public List<VehicleQueryModel> GetVehicles()
         {
             var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();

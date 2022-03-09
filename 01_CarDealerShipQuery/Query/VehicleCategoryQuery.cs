@@ -71,7 +71,7 @@ namespace _01_CarDealerShipQuery.Query
             return categories;
         }
 
-        private static List<VehicleQueryModel> MapVehicles(List<Vehicle> vehicles)
+        private static List<VehicleQueryModel> MapVehicles(List<ShopManagement.Domain.VehicleAgg.Vehicle> vehicles)
         {
             var result = new List<VehicleQueryModel>();
             foreach (var vehicle in vehicles)

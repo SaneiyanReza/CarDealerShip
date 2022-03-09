@@ -124,11 +124,38 @@
     
     $('#search-overlay-trigger').on('click', function(){
         $('#search-overlay').show();
+        var settings = {
+            "url": "https://localhost:44347/api/Vehicle",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "name": name
+            }),
+        };
     });
     
     
     $('#close-search-overlay').on('click', function(){
         $('#search-overlay').hide();
+
+        var settings = {
+            "url": "https://localhost:44347/api/Vehicle",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "name": name
+            }),
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
     });
     
     /*=====  End of search overlay active  ======*/

@@ -10,5 +10,6 @@ namespace _01_CarDealerShipQuery.Contracts.Vehicle
     {
         List<VehicleQueryModel> GetVehicles();
         List<VehicleQueryModel> Search(string value);
+        //DiscountStatus CheckDiscount(Vehicle command);
     }
 }
