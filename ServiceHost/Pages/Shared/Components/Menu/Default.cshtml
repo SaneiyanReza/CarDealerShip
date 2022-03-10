@@ -57,7 +57,7 @@
                                     </li>
                                 }
 
-                                @if (AuthHelper.CurrentAccountInfo().RoleID != 2)
+                                @if (AuthHelper.IsAuthenticated() && AuthHelper.CurrentAccountInfo().RoleID != 2)
                                 {
                                     <li>
                                         <a href="https://localhost:5001/administration">صفحه ادمین</a>
