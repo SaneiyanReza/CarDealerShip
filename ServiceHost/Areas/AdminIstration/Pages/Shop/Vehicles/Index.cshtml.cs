@@ -8,6 +8,7 @@ using DiscountManagement.App.CustomerDiscount;
 using Microsoft.AspNetCore.Authorization;
 using _0_Framework.Infrastucture;
 using ShopManegment.Configuration.Permissions;
+using ShopManagement.Presentation.Api.Controllers;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
 {
@@ -94,7 +95,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Vehicle
                 Message = "خودرو با موفقیت حذف شد!";
                 return RedirectToPage("./Index");
             }
-            //_vehicleApplication.DeleteByID(id);
+            _vehicleApplication.DeleteByID(id);
             return RedirectToPage("./Index");
         }
     }

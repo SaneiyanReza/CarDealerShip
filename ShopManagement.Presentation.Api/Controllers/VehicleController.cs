@@ -1,4 +1,5 @@
-﻿using _01_CarDealerShipQuery.Contracts.Vehicle;
+﻿using _0_Framework.App;
+using _01_CarDealerShipQuery.Contracts.Vehicle;
 using Microsoft.AspNetCore.Mvc;
 using ShopManegement.App.Vehicle;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace ShopManagement.Presentation.Api.Controllers
     public class VehicleController : ControllerBase
     {
         private readonly IVehicleQuery _vehicleQuery;
+        private readonly IVehicleApplication _vehicleApplication;
 
-        public VehicleController(IVehicleQuery vehicleQuery)
+        public VehicleController(IVehicleQuery vehicleQuery , IVehicleApplication vehicleApplication)
         {
             _vehicleQuery = vehicleQuery;
+            _vehicleApplication = vehicleApplication;
         }
 
         [HttpGet]
@@ -33,6 +36,12 @@ namespace ShopManagement.Presentation.Api.Controllers
         public List<VehicleQueryModel> Search(string value)
         {
             return _vehicleQuery.Search(value);
+        }
+
+        [HttpDelete("id")]
+        public OperationResult DeleteVehicle([FromRoute] int id)
+        {
+           return _vehicleApplication.DeleteByID(id);
         }
     }
 }

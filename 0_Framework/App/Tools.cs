@@ -116,9 +116,24 @@ namespace _0_Framework.App
             var stringSplit = money.Split(' ' , 'ت');
             return decimal.Parse(stringSplit[0]);
         }
+        public static string GiveVehicleName(this string Specifications)
+        {
+            return Specifications.Split("  ")[0];
+        }
+        public static string GiveVehicleModel(this string Specifications)
+        {
+            return Specifications.Split("  ")[1];
+        }
         public static string GiveVehicleFunction(this string Specifications)
         {
             return Specifications.Split("  ")[2];
+        }
+        public static string GiveVehicleInfo(this string Specifications)
+        {
+            var name = GiveVehicleName(Specifications);
+            var model = GiveVehicleModel(Specifications);
+            var function = GiveVehicleFunction(Specifications);
+            return "اسم:" + name + "\tمدل:" + model + "\tکارکرد:" + function;
         }
     }
 }

@@ -2,12 +2,11 @@
 using _01_CarDealerShipQuery.Contracts.Vehicle;
 using DiscountManegment.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.VehiclePictureAgg;
 using ShopManegment.Infrastructure.EfCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _01_CarDealerShipQuery.Query
 {
@@ -19,6 +18,68 @@ namespace _01_CarDealerShipQuery.Query
         {
             _context = carDealerShipContext;
             _discountcontext = discountContext;
+        }
+
+        public VehicleQueryModel GetDetails(string slug)
+        {
+            var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();
+            var discounts = _discountcontext.CustomerDiscounts.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
+                .Select(x => new { x.DiscountRate, x.VehicleID , x.EndDate }).ToList();
+            var vehicleQueryModels = _context.Vehicles.Include(x => x.VehicleCategory)
+                .Include(x => x.VehiclePictures)
+                .Select(x => new VehicleQueryModel
+                {
+                    ID = x.ID,
+                    Category = x.VehicleCategory.Name,
+                    CategorySlug = x.VehicleCategory.Slug,
+                    Specifications = x.Specifications,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Slug = x.Slug,
+                    Price = x.UnitPrice.ToMoney(),
+                    ShortDescription = x.ShortDescription,
+                    CreationDate = x.CreationDate,
+                    Description = x.Description,
+                    Keyword = x.Keyword,
+                    MetaDescription = x.MetaDescription,
+                    IsAvailable = x.IsAvailable,
+                    Pictures = MapVehiclePictures(x.VehiclePictures)
+                }).Where(x => x.IsAvailable == true).AsNoTracking().FirstOrDefault(x => x.Slug == slug);
+
+            if (vehicleQueryModels == null)
+            {
+                return new VehicleQueryModel();
+            }
+
+            var vehicleModel = vehicles.FirstOrDefault(x => x.ID == vehicleQueryModels.ID);
+            if (vehicleModel != null)
+            {
+                var price = vehicleModel.UnitPrice;
+                var discount = discounts.FirstOrDefault(x => x.VehicleID == vehicleQueryModels.ID);
+                if (discount != null)
+                {
+                    double discountRate = discount.DiscountRate;
+                    vehicleQueryModels.DiscountExpire = discount.EndDate.ToDiscountFormat();
+                    vehicleQueryModels.DiscountRate = discountRate;
+                    vehicleQueryModels.HasDiscount = discountRate > 0;
+                    var discountAmount = Math.Round((price * discountRate) / 100);
+                    vehicleQueryModels.PriceWithDiscount = (price - discountAmount).ToMoney();
+                }
+            }
+            return vehicleQueryModels;
+        }
+
+        private static List<VehiclePictureQueryModel> MapVehiclePictures(List<VehiclePicture> pictures)
+        {
+            return pictures.Select(x => new VehiclePictureQueryModel
+            {
+               IsRemoved = x.IsRemoved,
+               Picture = x.Picture,
+               PictureAlt = x.PictureAlt,
+               PictureTitle = x.PictureTitle,
+               VehicleID = x.VehicleID
+            }).Where(x => !x.IsRemoved).ToList();
         }
 
         //public DiscountStatus CheckDiscount(Vehicle command)
@@ -58,8 +119,9 @@ namespace _01_CarDealerShipQuery.Query
                 Price = x.UnitPrice.ToMoney(),
                 ShortDescription = x.ShortDescription,
                 CategorySlug = x.VehicleCategory.Slug,
-                CreationDate = x.CreationDate
-            }).AsNoTracking().OrderByDescending(x => x.ID).Take(20).ToList();
+                CreationDate = x.CreationDate,
+                IsAvailable = x.IsAvailable
+            }).Where(x => x.IsAvailable == true).AsNoTracking().OrderByDescending(x => x.ID).Take(20).ToList();
 
             foreach (var vehicle in vehicleQueryModels)
             {
@@ -101,7 +163,8 @@ namespace _01_CarDealerShipQuery.Query
                     Price = vehicle.UnitPrice.ToMoney(),
                     ShortDescription = vehicle.ShortDescription.ToLower(),
                     CategorySlug = vehicle.VehicleCategory.Slug,
-                }).AsNoTracking();
+                    IsAvailable = vehicle.IsAvailable,
+                }).Where(x => x.IsAvailable == true).AsNoTracking();
 
             if (!string.IsNullOrWhiteSpace(value))
             {

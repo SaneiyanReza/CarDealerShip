@@ -1,11 +1,7 @@
 ﻿using _0_Framework.App;
 using ShopManagement.Domain.VehicleAgg;
 using ShopManegement.App.Vehicle;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManegment.App.Concrete
 {

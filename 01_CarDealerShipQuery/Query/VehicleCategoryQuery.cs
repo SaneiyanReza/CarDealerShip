@@ -36,7 +36,7 @@ namespace _01_CarDealerShipQuery.Query
 
         public List<VehicleCategoryQueryModel> GetVehicleCategoriesWithVehicles()
         {
-            var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();
+            var vehicles = _context.Vehicles.Where(x => x.IsAvailable == true).Select(x => new { x.ID, x.UnitPrice }).ToList();
             var discounts = _discountcontext.CustomerDiscounts.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
                 .Select(x => new { x.DiscountRate, x.VehicleID }).ToList();
             var categories = _context.VehicleCategories.Include(x => x.Vehicles)
@@ -94,7 +94,7 @@ namespace _01_CarDealerShipQuery.Query
 
         public VehicleCategoryQueryModel GetVehicleCategoryWithVehicles(string slug)
         {
-            var vehicles = _context.Vehicles.Select(x => new { x.ID, x.UnitPrice }).ToList();
+            var vehicles = _context.Vehicles.Where(x => x.IsAvailable == true).Select(x => new { x.ID, x.UnitPrice }).ToList();
             var discounts = _discountcontext.CustomerDiscounts.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
                 .Select(x => new { x.DiscountRate, x.VehicleID , x.EndDate}).ToList();
             var category = _context.VehicleCategories.Include(x => x.Vehicles)

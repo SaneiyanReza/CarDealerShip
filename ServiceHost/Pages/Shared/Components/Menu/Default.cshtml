@@ -56,6 +56,13 @@
                                         <a asp-page="/Account">وورد / ثبت نام</a>
                                     </li>
                                 }
+
+                                @if (AuthHelper.CurrentAccountInfo().RoleID != 2)
+                                {
+                                    <li>
+                                        <a href="https://localhost:5001/administration">صفحه ادمین</a>
+                                    </li>
+                                }
                             </ul>
                         </nav>
                     </div>

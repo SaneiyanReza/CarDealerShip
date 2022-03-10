@@ -1,0 +1,362 @@
+﻿@page "{id}"
+@model ServiceHost.Pages.VehicleModel
+@{
+    ViewData["Title"] = Model.Vehicle.Specifications;
+}
+<div class="container wide">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="single-slider-item">
+                <div class="hero-slider-item-wrapper hero-slider-bg-1">
+                    <div class="single-slider-item">
+                        <div class="hero-slider-item-wrapper hero-slider-bg-1">
+                            <div class="container">
+                                <img src="~/Theme/assets/img/banner-image.jpg" style="position: absolute;top:0; left:0; height:90%; width:100%;" />
+                                <div class="hero-slider-content hero-slider-content--left-space">
+                                    <h1 class="breadcrumb-content__title">@Model.Vehicle.Specifications</h1>
+                                    <ul class="breadcrumb-content__page-map">
+                                        <li>
+                                            <a asp-page="/Index">صفحه اصلی</a>
+                                        </li>
+                                        <li>
+                                            <a asp-page="/VehicleCategory" asp-route-id="@Model.Vehicle.CategorySlug">@Model.Vehicle.Category</a>
+                                        </li>
+                                        <li class="active">@Model.Vehicle.Specifications</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="breadcrumb-area section-space--half">
+    <div class="container wide">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="breadcrumb-wrapper breadcrumb-bg">
+    <div class="breadcrumb-content">
+    <h1 class="breadcrumb-content__title">@Model.Vehicle.Specifications</h1>
+    <ul class="breadcrumb-content__page-map">
+    <li>
+    <a asp-page="/Index">صفحه اصلی</a>
+    </li>
+    <li>
+    <a asp-page="/VehicleCategory" asp-route-id="@Model.Vehicle.CategorySlug">@Model.Vehicle.Category</a>
+    </li>
+    <li class="active">@Model.Vehicle.Specifications</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>*@
+
+<div class="page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-wrapper">
+                    <div class="page-content-wrapper">
+                        <div class="single-product-main-content-area section-space" style="direction: ltr;">
+                            <div class="row" style="display: flex; flex-direction: row-reverse">
+                                <div class="col-lg-6">
+                                    <div class="product-details-slider-area">
+                                        <div class="big-image-wrapper">
+                                            <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--bottom-space ht-slick-slider"
+                                                 data-slick-setting='{
+                                                    "slidesToShow": 1,
+                                                    "slidesToScroll": 1,
+                                                    "arrows": false,
+                                                    "autoplay": true,
+                                                    "autoplaySpeed": 5000,
+                                                    "fade": true,
+                                                    "speed": 500,
+                                                    "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
+                                                    "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
+                                                }' data-slick-responsive='[
+                                                    {"breakpoint":1501, "settings": {"slidesToShow": 1, "arrows": false} },
+                                                    {"breakpoint":1199, "settings": {"slidesToShow": 1, "arrows": false} },
+                                                    {"breakpoint":991, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                                    {"breakpoint":767, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                                    {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                                    {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
+                                                ]'>
+
+                                                <div class="single-image">
+                                                    <img src="@Model.Vehicle.Picture" class="img-fluid"
+                                                         alt="@Model.Vehicle.PictureAlt" title="@Model.Vehicle.PictureTitle">
+                                                </div>
+                                                @foreach (var picture in Model.Vehicle.Pictures)
+                                                    {
+                                                    <div class="single-image">
+                                                    <img src="@picture.Picture" class="img-fluid"
+                                                    alt="@picture.PictureAlt" title="@picture.PictureTitle">
+                                                    </div>
+                                                    }
+                                            </div>
+                                        </div>
+
+
+                                        <div class="product-details-small-image-slider-wrapper product-details-small-image-slider-wrapper--horizontal-space ht-slick-slider"
+                                             data-slick-setting='{
+                                                    "slidesToShow": 4,
+                                                    "slidesToScroll": 1,
+                                                    "arrows": true,
+                                                    "autoplay": false,
+                                                    "autoplaySpeed": 5000,
+                                                    "speed": 500,
+                                                    "asNavFor": ".Vehicle-details-big-image-slider-wrapper",
+                                                    "focusOnSelect": true,
+                                                    "centerMode": false,
+                                                    "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
+                                                    "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
+                                                }' data-slick-responsive='[
+                                                    {"breakpoint":1501, "settings": {"slidesToShow": 3, "arrows": false} },
+                                                    {"breakpoint":1199, "settings": {"slidesToShow": 3, "arrows": false} },
+                                                    {"breakpoint":991, "settings": {"slidesToShow": 5, "arrows": false, "slidesToScroll": 1} },
+                                                    {"breakpoint":767, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1} },
+                                                    {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1} },
+                                                    {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1} }
+                                                ]'>
+                                            <div class="single-image">
+                                                <img src="@Model.Vehicle.Picture" class="img-fluid"
+                                                     alt="@Model.Vehicle.PictureAlt" title="@Model.Vehicle.PictureTitle">
+                                            </div>
+                                            @foreach (var picture in Model.Vehicle.Pictures)
+                                                {
+                                                <div class="single-image">
+                                                <img src="@picture.Picture" class="img-fluid"
+                                                alt="@picture.PictureAlt" title="@picture.PictureTitle">
+                                                </div>
+                                                }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="single-product-content-description">
+                                        <p class="single-info">
+                                            <a asp-page="/VehicleCategory" asp-route-id="@Model.Vehicle.CategorySlug">@Model.Vehicle.Category</a>
+                                        </p>
+                                        <h3 class="product-title">@_0_Framework.App.Tools.GiveVehicleName(Model.Vehicle.Specifications) :نام</h3>
+                                        <h3 class="product-title">@_0_Framework.App.Tools.GiveVehicleModel(Model.Vehicle.Specifications) :مدل</h3>
+                                        <h3 class="product-title">@_0_Framework.App.Tools.GiveVehicleFunction(Model.Vehicle.Specifications) :کارکرد</h3>
+                                        <div class="product-rating">
+                                            <span class="rating">
+                                                <i class="ion-android-star active"></i>
+                                                <i class="ion-android-star active"></i>
+                                                <i class="ion-android-star active"></i>
+                                                <i class="ion-android-star active"></i>
+                                                <i class="ion-android-star-outline"></i>
+                                            </span>
+
+                                            <span class="review-count">
+                                                <a href="#">(2 reviews)</a> | <a href="#">نظر دهید</a>
+                                            </span>
+                                        </div>
+
+                                        <p class="single-grid-product__price" style="direction: rtl">
+                                            @if (Model.Vehicle.HasDiscount)
+                                            {
+                                                <span class="main-price discounted">@Model.Vehicle.Price تومان</span>
+                                                <span class="discounted-price">@Model.Vehicle.PriceWithDiscount تومان</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="main-price">@Model.Vehicle.Price تومان</span>
+                                            }
+
+                                        </p>
+
+                                        @*<p class="single-info">
+                                            @if (Model.Vehicle.IsInStock)
+                                            {
+                                            <span class="text-success">موجود در انبار</span>
+                                            }
+                                            else
+                                            {
+                                            <span class="text-danger">خودرو ناموجود</span>
+                                            }
+                                            </p>*@
+
+                                        <p class="product-description">
+                                            @Model.Vehicle.ShortDescription
+                                        </p>
+                                        @if (Model.Vehicle.HasDiscount)
+                                        {
+                                            <div class="product-countdown" data-countdown="@Model.Vehicle.DiscountExpire"></div>
+                                        }
+
+                                        <div class="product-actions">
+                                            @*<div class="quantity-selection">
+                                                <label>تعداد</label>
+                                                <input type="number" value="1" min="1" id="productCount">
+                                            </div>*@
+                                            <div class="product-buttons">
+                                                <a class="cart-btn" onclick="addToCart('@Model.Vehicle.ID', '@Model.Vehicle.Specifications', '@Model.Vehicle.Price', '@Model.Vehicle.Picture')">
+                                                    <i class="ion-bag"></i> خرید
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="social-share-buttons mt-20">
+                                            <h5>این خودرو را به اشتراک بگذارید</h5>
+                                            <ul>
+                                                <li>
+                                                    <a class="twitter" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="facebook" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="google-plus" href="#">
+                                                        <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="pinterest" href="#">
+                                                        <i class="fa fa-pinterest"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                         <p class="single-info mb-0">
+                                            تگ ها: @Model.Vehicle.Keyword
+                                            </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-description-review-area">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="tab-slider-wrapper product-description-review-container  section-space--inner">
+                                        @* <nav>
+                                            <div class="nav nav-tabs justify-content-center" id="nav-tab"
+                                            role="tablist">
+                                            <a class="nav-item nav-link active" id="description-tab"
+                                            data-toggle="tab" href="#product-description" role="tab"
+                                            aria-selected="true">توضیحات</a>
+                                            <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
+                                            href="#review" role="tab" aria-selected="false">نظرات (@Model.Vehicle.Comments.Count)</a>
+                                            </div>
+                                            </nav>*@
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="product-description"
+                                                 role="tabpanel" aria-labelledby="description-tab">
+                                                <div class="product-description">
+                                                    @Model.Vehicle.ShortDescription
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="review" role="tabpanel"
+                                                 aria-labelledby="review-tab">
+                                                <div class="product-rating-wrap">
+                                                    @*<div class="rating-list">
+                                                        <div class="sin-list float-right">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <span>(5)</span>
+                                                        </div>
+                                                        <div class="sin-list float-right">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <span>(3)</span>
+                                                        </div>
+                                                        <div class="sin-list float-right">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <span>(1)</span>
+                                                        </div>
+                                                        <div class="sin-list float-right">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <span>(0)</span>
+                                                        </div>
+                                                        <div class="sin-list float-right">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <span>(0)</span>
+                                                        </div>
+                                                        </div>*@
+                                                    @*@foreach (var comment in Model.Vehicle.Comments)
+                                                        {
+                                                        <div class="ratings-wrapper">
+                                                        <div class="sin-ratings">
+                                                        <div class="rating-author">
+                                                        <h3>@comment.Name</h3>
+                                                        @*<div class="rating-star">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <span>(5)</span>
+                                                        </div>
+                                                        </div>
+                                                        <p>@comment.Message</p>
+                                                        </div>
+                                                        </div>
+                                                        }
+
+                                                        <div class="rating-form-wrapper fix">
+                                                        <h3>نظر خود را به ما بگویید</h3>
+                                                        <form method="post">
+                                                        <div class="rating-form row">
+                                                        <div class="col-md-6 col-12 form-group">
+                                                        <label for="name">نام:</label>
+                                                        <input id="name" placeholder="مثال: علی علوی" name="name" type="text">
+                                                        </div>
+                                                        <div class="col-md-6 col-12 form-group">
+                                                        <label for="email">ایمیل:</label>
+                                                        <input id="email" placeholder="مثال: contact@atriya.com" name="email" type="text">
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                        <label for="your-review">نظر شما:</label>
+                                                        <textarea name="message" id="message" placeholder="نظر خود را بنویسید ..."></textarea>
+                                                        </div>
+                                                        <input type="hidden" name="ownerRecordId" value="@Model.Vehicle.Id" />
+                                                        <input type="hidden" name="type" value="@CommnetManagement.Infrastructure.EFCore.CommentType.Vehicle" />
+                                                        <input type="hidden" name="productSlug" value="@Model.Vehicle.Slug" />
+                                                        <div class="col-12">
+                                                        <input value="ارسال" type="submit">
+                                                        </div>
+                                                        </div>
+                                                        </form>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

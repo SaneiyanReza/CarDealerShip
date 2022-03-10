@@ -18,6 +18,7 @@ namespace _01_CarDealerShipQuery.Contracts.VehicleCategory
         public string Keyword { get; set; }
         public string MetaDescription { get; set; }
         public string Description { get; set; }
+        public bool IsRemoved { get; set; }
         public List<VehicleQueryModel> Vehicles { get; set; }
         public VehicleQueryModel VehicleQueryModel { get; set; }
     }

@@ -6,6 +6,7 @@ using ShopManegement.App.Vehicle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,13 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
     public class VehicleRepository : RepositoryBase<int, Vehicle>, IVehicleRepository
     {
         private readonly CarDealerShipContext _context;
+
+        //private string apiUrl = "https://localhost:44347/api/Vehicle";
+        //private HttpClient _client;
         public VehicleRepository(CarDealerShipContext context) : base(context)
         {
             _context = context;
+            //_client = new HttpClient();
         }
 
         public bool DeleteByID(int id)
@@ -26,6 +31,7 @@ namespace ShopManegment.Infrastructure.EfCore.Repository
             if (vehicle != null)
             {
                 _context.Remove(vehicle);
+                //_client.DeleteAsync(apiUrl + "/" + id);
                 return true;
             }
             return false;
